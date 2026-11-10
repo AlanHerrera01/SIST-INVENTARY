@@ -1,0 +1,11 @@
+{
+  "realm": "inventory-dev",
+  "enabled": true,
+  "displayName": "Inventario - Desarrollo",
+  "registrationAllowed": false,
+  "resetPasswordAllowed": false,
+  "loginWithEmailAllowed": false,
+  "sslRequired": "none",
+  "clients": [],
+  "users": []
+}

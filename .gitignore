@@ -1,0 +1,14 @@
+.env
+.env.*
+!.env.example
+.secrets/
+.tools/
+.cache/
+**/node_modules/
+**/dist/
+**/target/
+*.log
+.idea/
+.vscode/
+.DS_Store
+
