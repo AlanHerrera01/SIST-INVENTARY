@@ -1,38 +1,72 @@
 import { useState } from "react"
-import { Activity, Boxes } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { AppLayout } from "@/components/layout/AppLayout"
+import { RequireAccess } from "@/components/RequireAccess"
+import { LoadingState } from "@/components/PageState"
+import { SessionProvider } from "@/lib/session"
+import { useSession } from "@/lib/session-context"
+import { DashboardPage } from "@/features/dashboard/DashboardPage"
+import { UsersPage } from "@/features/access/UsersPage"
+import { UserDetailPage } from "@/features/access/UserDetailPage"
+import { RolesPage } from "@/features/access/RolesPage"
+import { MatricesPage } from "@/features/access/MatricesPage"
+import { MyMatricesPage } from "@/features/access/MyMatricesPage"
+import { AuditPage } from "@/features/access/AuditPage"
+import { OrganizationPage } from "@/features/organization/OrganizationPage"
+import { LoginPage } from "@/features/auth/LoginPage"
+import { NotFoundPage } from "@/features/NotFoundPage"
 
-export function App() {
-  const [status, setStatus] = useState("Sin comprobar")
-  const [checking, setChecking] = useState(false)
+function createQueryClient() {
+  return new QueryClient({
+    defaultOptions: {
+      queries: { retry: 1, refetchOnWindowFocus: false, staleTime: 30_000 },
+    },
+  })
+}
 
-  async function checkHealth() {
-    setChecking(true)
-    try {
-      const response = await fetch("/actuator/health/readiness", { signal: AbortSignal.timeout(10000) })
-      const result: { status?: string } = await response.json()
-      setStatus(response.ok && result.status === "UP" ? "Servicios disponibles" : "Dependencias no disponibles")
-    } catch {
-      setStatus("No se pudo conectar con el backend")
-    } finally {
-      setChecking(false)
-    }
+function Shell() {
+  const { isLoading, requiresLogin } = useSession()
+  if (isLoading) {
+    return (
+      <div className="flex min-h-svh items-center justify-center">
+        <LoadingState label="Verificando sesión…" />
+      </div>
+    )
   }
-
+  if (requiresLogin) {
+    return (
+      <Routes>
+        <Route path="*" element={<LoginPage />} />
+      </Routes>
+    )
+  }
   return (
-    <main className="min-h-svh bg-background px-6 py-16 text-foreground sm:py-24">
-      <section className="mx-auto max-w-2xl rounded-xl border bg-card p-8 shadow-sm sm:p-12" aria-labelledby="title">
-        <Boxes className="mb-6 size-9 text-primary" aria-hidden="true" />
-        <p className="mb-3 text-sm font-medium text-muted-foreground">Inventario Tecnológico Multicentro</p>
-        <h1 id="title" className="text-3xl font-semibold tracking-tight">Entorno de desarrollo</h1>
-        <p className="mt-4 leading-7 text-muted-foreground">Estructura inicial preparada. Los módulos funcionales se incorporarán en las siguientes fases.</p>
-        <div className="mt-8 flex flex-wrap items-center gap-4">
-          <Button onClick={checkHealth} disabled={checking}>
-            <Activity aria-hidden="true" />{checking ? "Comprobando…" : "Comprobar servicios"}
-          </Button>
-          <p role="status" aria-live="polite" className="text-sm text-muted-foreground">{status}</p>
-        </div>
-      </section>
-    </main>
+    <Routes>
+      <Route element={<AppLayout />}>
+        <Route index element={<DashboardPage />} />
+        <Route path="mis-matrices" element={<MyMatricesPage />} />
+        <Route path="organization" element={<RequireAccess permission="organization.read"><OrganizationPage /></RequireAccess>} />
+        <Route path="access/users" element={<RequireAccess permission="access.users.read"><UsersPage /></RequireAccess>} />
+        <Route path="access/users/:id" element={<RequireAccess permission="access.users.read"><UserDetailPage /></RequireAccess>} />
+        <Route path="access/roles" element={<RequireAccess permission="access.roles.read"><RolesPage /></RequireAccess>} />
+        <Route path="access/matrices" element={<RequireAccess permission="access.matrices.read"><MatricesPage /></RequireAccess>} />
+        <Route path="access/audit" element={<RequireAccess permission="access.audit.read"><AuditPage /></RequireAccess>} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Route>
+    </Routes>
+  )
+}
+
+export function App({ queryClient }: { queryClient?: QueryClient } = {}) {
+  const [defaultClient] = useState(createQueryClient)
+  return (
+    <QueryClientProvider client={queryClient ?? defaultClient}>
+      <SessionProvider>
+        <BrowserRouter>
+          <Shell />
+        </BrowserRouter>
+      </SessionProvider>
+    </QueryClientProvider>
   )
 }

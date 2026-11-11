@@ -2,10 +2,79 @@
   "realm": "inventory-dev",
   "enabled": true,
   "displayName": "Inventario - Desarrollo",
+  "loginTheme": "inventory",
   "registrationAllowed": false,
   "resetPasswordAllowed": false,
   "loginWithEmailAllowed": false,
   "sslRequired": "none",
-  "clients": [],
-  "users": []
+  "clients": [
+    {
+      "clientId": "inventory-bff",
+      "name": "Inventario BFF",
+      "description": "Cliente confidencial del backend (flujo authorization code + PKCE).",
+      "enabled": true,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "${OIDC_CLIENT_SECRET}",
+      "redirectUris": ["${APP_PUBLIC_URL}/login/oauth2/code/inventory"],
+      "webOrigins": ["${APP_PUBLIC_URL}"],
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": false,
+      "publicClient": false,
+      "protocol": "openid-connect",
+      "fullScopeAllowed": true,
+      "attributes": {
+        "pkce.code.challenge.method": "S256"
+      },
+      "defaultClientScopes": ["web-origins", "acr", "profile", "roles", "email"],
+      "optionalClientScopes": ["address", "phone", "offline_access", "microprofile-jwt"]
+    },
+    {
+      "clientId": "inventory-admin",
+      "name": "Inventario Admin API",
+      "description": "Cliente de servicio para la Admin REST API (aprovisionamiento de usuarios).",
+      "enabled": true,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "${OIDC_ADMIN_CLIENT_SECRET}",
+      "standardFlowEnabled": false,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": true,
+      "publicClient": false,
+      "protocol": "openid-connect",
+      "fullScopeAllowed": true,
+      "defaultClientScopes": ["web-origins", "acr", "profile", "roles", "kc-admin-api"],
+      "optionalClientScopes": ["address", "phone", "offline_access", "microprofile-jwt"]
+    }
+  ],
+  "roles": {
+    "realm": [
+      {
+        "name": "ADMINISTRADOR",
+        "description": "Administrador del inventario (rol de realm exigido por la política MFA administrativa)."
+      }
+    ]
+  },
+  "users": [
+    {
+      "username": "service-account-inventory-admin",
+      "enabled": true,
+      "serviceAccountClientId": "inventory-admin",
+      "clientRoles": {
+        "realm-management": ["manage-users", "view-users", "query-users"]
+      }
+    },
+    {
+      "username": "admin",
+      "enabled": true,
+      "email": "admin@veris.local",
+      "firstName": "Administrador",
+      "lastName": "Sistema",
+      "credentials": [
+        { "type": "password", "value": "admin", "temporary": false }
+      ],
+      "realmRoles": ["ADMINISTRADOR"]
+    }
+  ]
 }

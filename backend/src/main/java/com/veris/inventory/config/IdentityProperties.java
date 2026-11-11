@@ -1,4 +1,4 @@
-package com.veris.inventory.platform.config;
+package com.veris.inventory.config;
 
 import java.net.URI;
 

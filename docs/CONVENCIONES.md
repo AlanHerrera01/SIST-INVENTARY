@@ -10,11 +10,37 @@ La pantalla inicial únicamente comprueba salud. No crea sesiones, tokens ni dat
 
 ## Backend
 
-Paquete raíz `com.veris.inventory`; `platform/config` y `platform/health` son infraestructura técnica. Los futuros módulos de dominio podrán organizarse por capacidad bajo ese paquete, con capas internas propias. No hay entidades, repositorios, controladores de negocio ni tablas de inventario en Fase 01.
+Paquete raíz `com.veris.inventory`. Se usa un **monolito modular por capacidad**: lo técnico vive en paquetes transversales y cada capacidad de negocio es un módulo con capas internas propias.
+
+```text
+com.veris.inventory
+├── InventoryApplication.java   punto de arranque y composición
+├── config/                     propiedades tipadas y beans técnicos
+├── health/                     indicadores de Actuator
+├── common/
+│   ├── error/                  Problem Details y códigos estables
+│   └── web/                    filtros y utilidades HTTP transversales
+└── <capacidad>/                módulo de negocio (identity, assets, transfers, …)
+    ├── api/                    controladores y DTOs de entrada/salida
+    ├── application/            casos de uso y puertos
+    ├── domain/                 entidades, value objects, reglas y puertos
+    └── infrastructure/         adaptadores: JDBC, clientes, configuración
+```
+
+Regla de dependencia: `api` → `application` → `domain`; `infrastructure` implementa puertos y puede depender de `domain` y `application`. El dominio no importa Spring, JDBC ni HTTP. `common` y `config` no dependen de módulos de negocio. Un módulo se crea cuando existe código real que lo justifica; no se crean paquetes vacíos para simular implementación. Cada paquete incluye `package-info.java` con su responsabilidad y límites. `com.veris.inventory.identity` es el primer módulo y aún conserva código de una fase posterior pendiente de consolidación.
+
+Fase 02 incorpora tablas mediante Flyway en `src/main/resources/db/migration/`; no incorpora entidades Java, repositorios ni controladores de negocio. Los tests de esquema viven en `com.veris.inventory.schema` y se ejecutan contra MySQL real.
 
 Clases en PascalCase, métodos en camelCase y constantes en UPPER_SNAKE_CASE; paquetes en minúsculas. Java 21, cuatro espacios en archivos nuevos, inyección por constructor. SQL futuro en snake_case. API futura en `/api/v1`, rutas de recursos en kebab-case, JSON de dominio en snake_case conforme al contrato detallado que se apruebe; esta convención no cambia los formatos estándar de Actuator/OIDC.
 
-Configuración común en `application.yml`, sobreescrita por variables de entorno o configtree. No crear perfiles con contraseñas predeterminadas, `ddl-auto=create`, generación automática de tablas o cuentas de desarrollo dentro del código. No agregar migraciones de dominio en esta fase; Spring tiene inicialización SQL deshabilitada.
+Configuración común en `application.yml`, sobreescrita por variables de entorno o configtree. No crear perfiles con contraseñas predeterminadas, `ddl-auto=create`, generación automática de tablas o cuentas de desarrollo dentro del código. Flyway administra las migraciones versionadas; la inicialización SQL genérica de Spring permanece deshabilitada. Los cambios posteriores usan nuevas versiones, sin editar migraciones ya entregadas.
+
+## Pruebas y verificación
+
+- Frontend: Vitest + Testing Library; los tests viven junto al código como `src/**/*.test.tsx` y comprueban comportamiento visible (roles, textos, estados), no detalles de implementación. `npm run lint`, `npm run test` y `npm run build` son la puerta local.
+- Backend: JUnit 5 con Spring Boot Test. La prueba de arranque usa H2 y un servidor OIDC simulado; los tests que necesiten MySQL real usan el perfil `mysql-it` y una base efímera, sin sustituir silenciosamente un motor por otro.
+- Antes de una revisión: `docker compose config --quiet` y `smoke.ps1` sobre servicios reales. Registrar verificaciones bloqueadas con causa.
+- CI: `.github/workflows/ci.yml` ejecuta lint, test, build y `mvnw verify`, y valida Compose. No publica artefactos ni despliega.
 
 ## Errores y logs
 

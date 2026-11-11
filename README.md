@@ -1,8 +1,12 @@
 # Sistema de Inventario Tecnológico Multicentro
 
-Estructura de desarrollo de **Fase 01**. Incluye React, TypeScript, Vite, Tailwind CSS, configuración shadcn/ui y un componente base; Spring Boot con Java 21; MySQL Community; y Keycloak con un realm vacío de desarrollo.
+Estructura de desarrollo de Fase 01 y esquema de persistencia de **Fase 02**. Incluye React, TypeScript, Vite, Tailwind CSS, shadcn/ui; Spring Boot con Java 21; MySQL Community con Flyway; y Keycloak con un realm vacío de desarrollo.
 
-No incluye inventario, reglas de negocio, usuarios de aplicación, cliente OIDC, login, autorización por roles ni migraciones de dominio. El botón de la pantalla inicial consulta únicamente la disponibilidad técnica del backend.
+Incluye 14 migraciones y 38 tablas, sin datos empresariales precargados. No hay servicios de inventario, cliente OIDC, login ni autorización funcional. El botón de la pantalla inicial consulta únicamente la disponibilidad técnica del backend.
+
+> Nota de alcance: el árbol de trabajo actual contiene código de autenticación de una fase posterior aún sin commitear (`backend/src/main/java/com/veris/inventory/identity/`). No forma parte de Fase 01 y debe aislarse antes de cerrarla. Detalle en [verificación de Fase 01](docs/VERIFICACION-FASE-01.md).
+
+La Fase 02 se describe en [esquema y relaciones](docs/ESQUEMA-FASE-02.md), [diccionario de datos](docs/DICCIONARIO-DATOS-FASE-02.md), [migración y recuperación](docs/OPERACION-ESQUEMA-FASE-02.md) y [verificación](docs/VERIFICACION-FASE-02.md). Se utiliza un solo `compose.yml` de desarrollo.
 
 ## Organización
 
@@ -102,6 +106,7 @@ Si el wrapper no tiene permiso de ejecución, usar `sh mvnw` o asignar permiso a
 cd frontend
 npm ci
 npm run lint
+npm run test
 npm run build
 npm run dev
 ```
@@ -126,4 +131,4 @@ Todos los puertos publicados se ligan a `127.0.0.1`. MySQL no usa TLS en la red 
 
 El backend no aplica autenticación funcional: no existen endpoints de negocio. Antes de incorporarlos debe implementarse la política de identidad y autorización definida en las fases correspondientes.
 
-Consulte [convenciones](docs/CONVENCIONES.md), [decisiones de Fase 01](docs/DECISIONES-FASE-01.md) y [resultados de verificación](docs/VERIFICACION-FASE-01.md). La disponibilidad real de Docker y los servicios se registra allí; esta guía de arranque no constituye evidencia de que se hayan iniciado.
+Consulte [arquitectura](docs/ARQUITECTURA-FASE-01.md), [convenciones](docs/CONVENCIONES.md), [decisiones de Fase 01](docs/DECISIONES-FASE-01.md) y [resultados de verificación](docs/VERIFICACION-FASE-01.md). La disponibilidad real de Docker y los servicios se registra allí; esta guía de arranque no constituye evidencia de que se hayan iniciado.

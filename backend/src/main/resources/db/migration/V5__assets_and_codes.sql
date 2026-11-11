@@ -11,16 +11,16 @@
 
 -- Contadores organizacionales. Numeración transaccional sin disparadores:
 -- dentro de la transacción de negocio se ejecuta
---   SELECT last_value FROM code_sequence
+--   SELECT current_value FROM code_sequence
 --     WHERE organization_id = ? AND sequence_name = ? FOR UPDATE;
---   UPDATE code_sequence SET last_value = last_value + 1 WHERE id = ?;
+--   UPDATE code_sequence SET current_value = current_value + 1 WHERE id = ?;
 -- El bloqueo de fila serializa la asignación; se aceptan huecos y jamás se
 -- decrece el contador (sin reutilización, §7).
 CREATE TABLE code_sequence (
   id BINARY(16) NOT NULL DEFAULT (UUID_TO_BIN(UUID(), 1)),
   organization_id BINARY(16) NOT NULL,
   sequence_name VARCHAR(50) NOT NULL,
-  last_value BIGINT UNSIGNED NOT NULL DEFAULT 0,
+  current_value BIGINT UNSIGNED NOT NULL DEFAULT 0,
   created_at DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
   updated_at DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
   CONSTRAINT pk_code_sequence PRIMARY KEY (id),

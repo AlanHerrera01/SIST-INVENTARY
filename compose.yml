@@ -2,7 +2,8 @@ name: ${COMPOSE_PROJECT_NAME:-inventory-dev}
 
 services:
   mysql:
-    image: mysql:8.4.9
+    image: mysql:8.4.13
+    command: ["--log-bin-trust-function-creators=1", "--default-time-zone=+00:00"]
     environment:
       MYSQL_DATABASE: inventory
       MYSQL_USER: inventory
@@ -35,14 +36,16 @@ services:
     entrypoint: ["/bin/bash", "/opt/bootstrap/entrypoint.sh"]
     environment:
       KC_DB: mysql
-      KC_DB_URL: jdbc:mysql://mysql:3306/keycloak?sslMode=DISABLED&connectionTimeZone=UTC
+      KC_DB_URL: jdbc:mysql://mysql:3306/keycloak?sslMode=DISABLED&allowPublicKeyRetrieval=true&connectionTimeZone=UTC
       KC_DB_USERNAME: keycloak
       KC_BOOTSTRAP_ADMIN_USERNAME: ${KEYCLOAK_ADMIN_USER:-bootstrap-admin}
       KC_HOSTNAME: ${KEYCLOAK_PUBLIC_URL:-http://localhost:8081}
+      KC_HOSTNAME_BACKCHANNEL_DYNAMIC: "true"
       KC_HEALTH_ENABLED: "true"
       KC_METRICS_ENABLED: "true"
       KC_HTTP_MANAGEMENT_SCHEME: http
       KC_LOG_CONSOLE_OUTPUT: json
+      APP_PUBLIC_URL: ${APP_PUBLIC_URL:-http://localhost:5173}
     ports:
       - "127.0.0.1:${KEYCLOAK_PORT:-8081}:8080"
       - "127.0.0.1:${KEYCLOAK_MANAGEMENT_PORT:-9000}:9000"
@@ -50,9 +53,12 @@ services:
       - ./infra/keycloak/entrypoint.sh:/opt/bootstrap/entrypoint.sh:ro
       - ./infra/keycloak/healthcheck.sh:/opt/bootstrap/healthcheck.sh:ro
       - ./infra/keycloak/realm-inventory-dev.json:/opt/keycloak/data/import/realm-inventory-dev.json:ro
+      - ./infra/keycloak/themes:/opt/keycloak/themes:ro
     secrets:
       - keycloak_db_password
       - keycloak_admin_password
+      - oidc_client_secret
+      - oidc_admin_client_secret
     depends_on:
       mysql:
         condition: service_healthy
@@ -67,13 +73,19 @@ services:
   backend:
     build: ./backend
     environment:
-      DB_URL: jdbc:mysql://mysql:3306/inventory?sslMode=DISABLED&connectionTimeZone=UTC
+      DB_URL: jdbc:mysql://mysql:3306/inventory?sslMode=DISABLED&allowPublicKeyRetrieval=true&connectionTimeZone=UTC&forceConnectionTimeZoneToSession=true
       DB_USERNAME: inventory
       OIDC_ISSUER_URI: ${OIDC_ISSUER_URI:-http://localhost:8081/realms/inventory-dev}
       OIDC_DISCOVERY_URI: http://keycloak:8080/realms/inventory-dev/.well-known/openid-configuration
+      OIDC_INTERNAL_URI: http://keycloak:8080/realms/inventory-dev
+      APP_PUBLIC_URL: ${APP_PUBLIC_URL:-http://localhost:5173}
+      APP_ORGANIZATION_ID: ${APP_ORGANIZATION_ID:-00000000-0000-0000-0000-000000000000}
+      SESSION_COOKIE_SECURE: ${SESSION_COOKIE_SECURE:-false}
       LOG_LEVEL: ${LOG_LEVEL:-INFO}
     secrets:
       - app_db_password
+      - oidc_client_secret
+      - oidc_admin_client_secret
     ports:
       - "127.0.0.1:${BACKEND_PORT:-8080}:8080"
     depends_on:
@@ -118,3 +130,7 @@ secrets:
     file: ./.secrets/keycloak_db_password
   keycloak_admin_password:
     file: ./.secrets/keycloak_admin_password
+  oidc_client_secret:
+    file: ./.secrets/oidc_client_secret
+  oidc_admin_client_secret:
+    file: ./.secrets/oidc_admin_client_secret

@@ -24,4 +24,16 @@ Spring Boot se genera desde Spring Initializr. Las versiones exactas se registra
 - [Keycloak: bases compatibles, MySQL 8.4](https://www.keycloak.org/server/db).
 - [Keycloak: comprobaciones de salud y ausencia de curl en imagen](https://www.keycloak.org/observability/health).
 
+## Ajustes de la revisión de Fase 01 (11 de noviembre de 2026)
+
+| Decisión | Estado y fundamento |
+|---|---|
+| Vitest + Testing Library en frontend | Aprobado. Da una puerta de calidad ejecutable sin navegador y prueba los estados de la pantalla inicial. No se añadió Playwright: el smoke sobre servicios reales cubre el recorrido de infraestructura. |
+| Build de imagen sin tests | El Dockerfile compila con `-DskipTests`; `mvnw verify` y CI ejecutan la suite. Evita acoplar el arranque local a una descarga completa de dependencias de test y mantiene el build reproducible. |
+| Caché BuildKit de Maven y npm | `--mount=type=cache` en `/root/.m2` y `/root/.npm`, más reintentos HTTP. Reduce builds repetidos y mitiga cortes de red transitorios observados. |
+| Workflow de CI | `.github/workflows/ci.yml` valida frontend, backend y Compose en push a `main` y pull requests. Sin despliegue ni publicación de artefactos. |
+| Smoke compatible con PowerShell 5.1 | `smoke.ps1` decodifica cuerpos `byte[]` de Actuator antes de `ConvertFrom-Json`; antes producía un falso negativo. |
+
+## Pendientes
+
 Continúan pendientes las decisiones de Fase 00 no resueltas expresamente por esta solicitud, especialmente roles, reglas de negocio, efectos legales de firma, retención y despliegue productivo. No se recibió un archivo adicional de instrucciones globales del proyecto.

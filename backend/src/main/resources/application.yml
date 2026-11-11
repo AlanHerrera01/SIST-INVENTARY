@@ -4,7 +4,7 @@ spring:
   config:
     import: optional:configtree:/run/secrets/
   datasource:
-    url: ${DB_URL:jdbc:mysql://localhost:3306/inventory?sslMode=DISABLED&connectionTimeZone=UTC}
+    url: ${DB_URL:jdbc:mysql://localhost:3306/inventory?sslMode=DISABLED&allowPublicKeyRetrieval=true&connectionTimeZone=UTC&forceConnectionTimeZoneToSession=true}
     username: ${DB_USERNAME:inventory}
     password: ${DB_PASSWORD:${app_db_password}}
     hikari:
@@ -17,10 +17,25 @@ spring:
   flyway:
     locations: classpath:db/migration
     community-db-support-enabled: true
+    clean-disabled: true
+    baseline-on-migrate: false
+    validate-on-migrate: true
+    out-of-order: false
   mvc:
     problemdetails:
       enabled: true
+  jackson:
+    property-naming-strategy: SNAKE_CASE
 server:
+  servlet:
+    session:
+      timeout: 30m
+      tracking-modes: cookie
+      cookie:
+        http-only: true
+        secure: ${SESSION_COOKIE_SECURE:true}
+        same-site: lax
+        path: /
   port: ${SERVER_PORT:8080}
   shutdown: graceful
   error:
@@ -43,6 +58,14 @@ management:
         readiness:
           include: readinessState,db,keycloak
 app:
+  security:
+    public-url: ${APP_PUBLIC_URL:http://localhost:5173}
+    oidc-internal-uri: ${OIDC_INTERNAL_URI:${app.identity.issuer-uri}}
+    client-secret: ${OIDC_CLIENT_SECRET:${oidc_client_secret}}
+    admin-client-id: ${OIDC_ADMIN_CLIENT_ID:inventory-admin}
+    admin-client-secret: ${OIDC_ADMIN_CLIENT_SECRET:${oidc_admin_client_secret:}}
+    organization-id: ${APP_ORGANIZATION_ID:00000000-0000-0000-0000-000000000000}
+    absolute-session-timeout: 8h
   identity:
     issuer-uri: ${OIDC_ISSUER_URI:http://localhost:8081/realms/inventory-dev}
     discovery-uri: ${OIDC_DISCOVERY_URI:${app.identity.issuer-uri}/.well-known/openid-configuration}

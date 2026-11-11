@@ -21,14 +21,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 // H2 no cubre las migraciones de Fase 02, escritas en dialecto MySQL: este
 // arranque solo comprueba la estructura técnica de Fase 01. Las migraciones
-// se prueban contra MySQL real en com.veris.inventory.platform.schema.
+// se prueban contra MySQL real en com.veris.inventory.schema.
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
         properties = {
                 "spring.datasource.url=jdbc:h2:mem:bootstrap;DB_CLOSE_DELAY=-1",
                 "spring.datasource.username=sa",
                 "spring.datasource.password=",
                 "spring.datasource.driver-class-name=org.h2.Driver",
-                "spring.flyway.enabled=false"
+                "spring.flyway.enabled=false",
+                "app.security.client-secret=test-only-not-a-credential"
         })
 class InventoryApplicationTests {
     private static final AtomicBoolean identityAvailable = new AtomicBoolean(true);
@@ -77,8 +78,8 @@ class InventoryApplicationTests {
         try {
             assertThat(get(client, "/actuator/health/readiness").statusCode()).isEqualTo(503);
             assertThat(get(client, "/actuator/health/liveness").statusCode()).isEqualTo(200);
-            assertThat(get(client, "/actuator/env").statusCode()).isEqualTo(404);
-            assertThat(get(client, "/api/v1/assets").statusCode()).isEqualTo(404);
+            assertThat(get(client, "/actuator/env").statusCode()).isEqualTo(401);
+            assertThat(get(client, "/api/v1/assets").statusCode()).isEqualTo(401);
         } finally {
             identityAvailable.set(true);
         }

@@ -13,22 +13,39 @@
   --color-border: var(--border);
   --color-input: var(--border);
   --color-ring: var(--primary);
+  --color-destructive: var(--destructive);
   --radius-md: 0.5rem;
   --radius-xl: 1rem;
 }
 
+@theme {
+  --color-brand-950: #001c50;
+  --color-brand-900: #11244e;
+  --color-brand-800: #17326c;
+  --color-brand-700: #1d3a7b;
+  --color-brand-600: #2c447f;
+  --color-brand-100: #dae2ff;
+  --color-cyan-brand: #00a3e0;
+  --color-cyan-brand-hover: #008bc7;
+  --color-ink: #131b2e;
+  --color-ink-soft: #444650;
+  --color-line: #e2e8f0;
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
 :root {
-  --background: oklch(0.98 0.004 250);
-  --foreground: oklch(0.21 0.034 265);
+  --background: #f8fafc;
+  --foreground: #131b2e;
   --card: oklch(1 0 0);
-  --primary: oklch(0.42 0.12 250);
+  --primary: #17326c;
   --primary-foreground: oklch(1 0 0);
-  --muted-foreground: oklch(0.48 0.025 260);
-  --accent: oklch(0.94 0.01 250);
-  --border: oklch(0.89 0.012 250);
+  --muted-foreground: #475569;
+  --accent: #f1f5f9;
+  --border: #e2e8f0;
+  --destructive: oklch(0.55 0.2 25);
 }
 
 @layer base {
   * { @apply border-border; }
-  body { @apply m-0 bg-background text-foreground antialiased; font-family: system-ui, sans-serif; }
+  body { @apply m-0 bg-background text-foreground antialiased; font-family: "Inter", system-ui, sans-serif; }
 }

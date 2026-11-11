@@ -1,9 +1,9 @@
-package com.veris.inventory.platform.health;
+package com.veris.inventory.health;
 
 import java.time.Duration;
 import java.util.Map;
 
-import com.veris.inventory.platform.config.IdentityProperties;
+import com.veris.inventory.config.IdentityProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.health.contributor.Health;
 import org.springframework.boot.health.contributor.HealthIndicator;
