@@ -10,17 +10,17 @@ const DialogClose = DialogPrimitive.Close
 function DialogContent({ className, children, ...props }: React.ComponentProps<typeof DialogPrimitive.Content>) {
   return (
     <DialogPrimitive.Portal>
-      <DialogPrimitive.Overlay className="fixed inset-0 z-50 bg-black/50 data-[state=open]:animate-in data-[state=open]:fade-in-0" />
+      <DialogPrimitive.Overlay className="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm data-[state=open]:animate-in data-[state=open]:fade-in-0" />
       <DialogPrimitive.Content
         className={cn(
           "fixed left-1/2 top-1/2 z-50 grid w-full max-w-lg -translate-x-1/2 -translate-y-1/2 gap-4",
-          "rounded-xl border bg-card p-6 shadow-lg focus:outline-none",
+          "rounded-xl border border-line bg-surface-container-lowest p-6 shadow-sheet focus:outline-none",
           className,
         )}
         {...props}
       >
         {children}
-        <DialogPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" aria-label="Cerrar">
+        <DialogPrimitive.Close className="absolute right-4 top-4 rounded-lg text-on-surface-variant opacity-70 hover:bg-surface-container-low hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary" aria-label="Cerrar">
           <X className="size-4" />
         </DialogPrimitive.Close>
       </DialogPrimitive.Content>

@@ -5,7 +5,7 @@ export interface Grant {
   role: string
   scope: "GLOBAL" | "CENTROS" | string
   centerId: string | null
-  permission: string
+  permission: string | null
 }
 
 export interface Profile {

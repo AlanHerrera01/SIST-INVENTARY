@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from "react"
+import { useId, useState, type ReactNode } from "react"
 import {
   Dialog,
   DialogContent,
@@ -36,34 +36,41 @@ export function ConfirmDialog({
   const [open, setOpen] = useState(false)
   const [typed, setTyped] = useState("")
   const [busy, setBusy] = useState(false)
+  const [error, setError] = useState("")
+  const inputId = useId()
 
   const ready = !requireText || typed === requireText
 
   async function confirm() {
+    if (busy || !ready) return
+    setError("")
     setBusy(true)
     try {
       await onConfirm()
       setOpen(false)
       setTyped("")
+    } catch {
+      setError("No se pudo completar la operación. Revise la información e inténtelo nuevamente.")
     } finally {
       setBusy(false)
     }
   }
 
   return (
-    <Dialog open={open} onOpenChange={(v) => { setOpen(v); if (!v) setTyped("") }}>
+    <Dialog open={open} onOpenChange={(v) => { if (busy) return; setOpen(v); if (!v) { setTyped(""); setError("") } }}>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
-          {description && <DialogDescription>{description}</DialogDescription>}
+          <DialogDescription>{description ?? "Confirme si desea continuar con esta operación."}</DialogDescription>
         </DialogHeader>
         {requireText && (
           <div className="space-y-2">
-            <Label htmlFor="confirm-text">Escriba «{requireText}» para confirmar</Label>
-            <Input id="confirm-text" value={typed} onChange={(e) => setTyped(e.target.value)} autoComplete="off" />
+            <Label htmlFor={inputId}>Escriba «{requireText}» para confirmar</Label>
+            <Input id={inputId} value={typed} onChange={(e) => setTyped(e.target.value)} autoComplete="off" />
           </div>
         )}
+        {error && <p role="alert" className="text-sm text-destructive">{error}</p>}
         <DialogFooter>
           <Button variant="outline" onClick={() => setOpen(false)} disabled={busy}>
             Cancelar

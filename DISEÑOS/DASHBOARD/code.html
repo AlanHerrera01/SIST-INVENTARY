@@ -1,0 +1,677 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "error-container": "#ffdad6", "on-primary-fixed-variant": "#2c447f", "on-error": "#ffffff", "on-secondary-fixed-variant": "#004c6b", "on-secondary-fixed": "#001e2d", "on-surface-variant": "#444650", "surface-dim": "#d2d9f4", "inverse-surface": "#283044", "on-primary-fixed": "#001847", "surface-variant": "#dae2fd", "tertiary-container": "#30277b", "on-tertiary-container": "#9a93ec", "surface-bright": "#faf8ff", "surface-container-lowest": "#ffffff", "error": "#ba1a1a", "secondary-fixed": "#c6e7ff", "inverse-primary": "#b2c5ff", "primary-fixed-dim": "#b2c5ff", "tertiary-fixed-dim": "#c5c0ff", "on-background": "#131b2e", "on-error-container": "#93000a", "surface-container-high": "#e2e7ff", "inverse-on-surface": "#eef0ff", "outline": "#757781", "secondary": "#00658d", "on-primary-container": "#859cdd", "on-secondary": "#ffffff", "tertiary-fixed": "#e4dfff", "surface-container-highest": "#dae2fd", "on-secondary-container": "#004b69", "background": "#faf8ff", "on-primary": "#ffffff", "on-tertiary": "#ffffff", "secondary-container": "#41befd", "tertiary": "#1a0b66", "secondary-fixed-dim": "#81cfff", "surface-tint": "#455c99", "primary-fixed": "#dae2ff", "primary": "#001c50", "surface": "#faf8ff", "surface-container-low": "#f2f3ff", "on-surface": "#131b2e", "on-tertiary-fixed": "#150362", "primary-container": "#17326c", "on-tertiary-fixed-variant": "#423b8e", "outline-variant": "#c5c6d1", "surface-container": "#eaedff" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-xs": "0.25rem", "margin-mobile": "1rem", "space-sm": "0.5rem", "gutter-mobile": "0.75rem", "margin": "2rem", "space-lg": "1.5rem", "space-xl": "2.5rem", "gutter": "1.5rem", "space-md": "1rem" }, "fontFamily": { "headline-lg-mobile": [ "Inter" ], "headline-xl-mobile": [ "Inter" ], "label-md": [ "Inter" ], "body-md": [ "Inter" ], "headline-lg": [ "Inter" ], "title-sm": [ "Inter" ], "label-sm": [ "Inter" ], "headline-xl": [ "Inter" ], "body-lg": [ "Inter" ], "body-sm": [ "Inter" ], "code-asset": [ "Inter" ], "headline-md": [ "Inter" ] }, "fontSize": { "headline-lg-mobile": [ "1.25rem", { "lineHeight": "1.75rem", "letterSpacing": "-0.015em", "fontWeight": "600" } ], "headline-xl-mobile": [ "1.5rem", { "lineHeight": "2rem", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "label-md": [ "0.875rem", { "lineHeight": "1.25rem", "fontWeight": "500" } ], "body-md": [ "0.875rem", { "lineHeight": "1.25rem", "fontWeight": "400" } ], "headline-lg": [ "1.5rem", { "lineHeight": "2rem", "letterSpacing": "-0.02em", "fontWeight": "600" } ], "title-sm": [ "1rem", { "lineHeight": "1.5rem", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "label-sm": [ "0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.025em", "fontWeight": "500" } ], "headline-xl": [ "2rem", { "lineHeight": "2.5rem", "letterSpacing": "-0.025em", "fontWeight": "700" } ], "body-lg": [ "1rem", { "lineHeight": "1.5rem", "fontWeight": "400" } ], "body-sm": [ "0.75rem", { "lineHeight": "1rem", "fontWeight": "400" } ], "code-asset": [ "0.8125rem", { "lineHeight": "1rem", "letterSpacing": "0.05em", "fontWeight": "600" } ], "headline-md": [ "1.25rem", { "lineHeight": "1.75rem", "letterSpacing": "-0.015em", "fontWeight": "600" } ] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest shadow-[0_1px_8px_rgba(23,50,108,0.06)] z-50 flex flex-col justify-between"><div class="flex flex-col"><div class="h-16 px-space-lg flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="w-9 h-9 rounded-lg bg-primary-container flex items-center justify-center text-on-primary font-headline-md text-headline-md shadow-[0_1px_4px_rgba(23,50,108,0.2)]"><span class="material-symbols-outlined text-[22px]">local_hospital</span></div><div class="flex flex-col"><span class="font-headline-md text-title-sm text-primary-container font-bold tracking-tight leading-none">VERIS</span><span class="font-label-sm text-label-sm text-secondary font-medium tracking-wide uppercase mt-0.5">Gestión TI</span></div></div><button aria-label="Colapsar menú" class="p-space-xs text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low rounded-lg transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">dock_to_left</span></button></div><div class="px-space-md py-space-xs"><div class="px-space-sm py-space-xs text-label-sm font-label-sm uppercase tracking-wider text-outline font-semibold">Menú Principal</div></div><nav class="flex flex-col px-space-md gap-1" data-active-classes="bg-primary-container text-on-primary font-label-md rounded-lg shadow-[0_1px_3px_rgba(23,50,108,0.15)]"><a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-2 transition-all bg-primary-container text-on-primary font-label-md rounded-lg shadow-[0_1px_3px_rgba(23,50,108,0.15)]" data-path="dashboard-general" href="#"><span class="material-symbols-outlined text-[20px]">grid_view</span><span class="">Dashboard General</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="inventario-nacional" href="#"><span class="material-symbols-outlined text-[20px]">inventory_2</span><span class="">Inventario Nacional</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="traslados-y-guias" href="#"><span class="material-symbols-outlined text-[20px]">local_shipping</span><span class="">Traslados y Guías</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="actas-y-firmas" href="#"><span class="material-symbols-outlined text-[20px]">assignment_turned_in</span><span class="">Actas y Firmas</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="mantenimiento" href="#"><span class="material-symbols-outlined text-[20px]">build_circle</span><span class="">Equipos en Mantenimiento</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="auditoria" href="#"><span class="material-symbols-outlined text-[20px]">verified</span><span class="">Auditoría</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="configuracion" href="#"><span class="material-symbols-outlined text-[20px]">settings</span><span class="">Configuración</span></a></nav></div><div class="p-space-md"><div class="p-space-sm rounded-xl bg-surface-container-low flex items-center justify-between"><div class="flex items-center gap-space-sm overflow-hidden"><div class="w-9 h-9 rounded-full bg-primary-container flex items-center justify-center text-on-primary font-label-md text-label-md shrink-0 font-bold">TI</div><div class="flex flex-col min-w-0"><span class="font-label-md text-label-md text-on-surface font-semibold truncate">Ing. Carlos V.</span><span class="inline-flex items-center px-1.5 py-0.5 rounded-full text-[10px] font-semibold bg-secondary-fixed text-on-secondary-fixed w-fit mt-0.5">Admin Nacional</span></div></div><button class="p-1 text-on-surface-variant hover:text-error hover:bg-surface-container-high rounded-lg transition-colors" title="Cerrar sesión" type="button"><span class="material-symbols-outlined text-[18px]">logout</span></button></div></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_6px_rgba(23,50,108,0.04)] z-40 flex items-center justify-between px-space-lg"><div class="flex items-center gap-space-lg flex-1 max-w-xl"><div class="relative w-full max-w-md"><span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span><input class="w-full h-9 pl-9 pr-16 bg-surface-container-low text-on-surface placeholder-outline font-body-sm text-body-sm rounded-lg border-0 focus:outline-none focus:ring-2 focus:ring-secondary transition-all" placeholder="Buscar activo, serie INV/CPU, custodio..." type="text"><div class="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-surface-container-highest text-outline font-code-asset text-[10px] font-semibold tracking-wider"><span class="">⌘K</span></div></div><div class="relative"><select class="h-9 pl-3 pr-8 bg-surface-container-low text-on-surface font-label-sm text-label-sm font-semibold rounded-lg border-0 focus:outline-none focus:ring-2 focus:ring-secondary appearance-none cursor-pointer"><option value="todas">Todas las Sedes</option><option value="quito">Matriz Quito</option><option value="guayaquil">Matriz Guayaquil</option><option value="cuenca">Central Cuenca</option></select><span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-outline text-[16px] pointer-events-none">expand_more</span></div></div><div class="flex items-center gap-space-md"><button class="h-9 px-space-md bg-secondary hover:bg-on-secondary-fixed-variant text-on-secondary font-label-sm text-label-sm font-semibold rounded-lg flex items-center gap-1.5 shadow-[0_1px_3px_rgba(0,101,141,0.2)] transition-all" type="button"><span class="material-symbols-outlined text-[18px]">add_circle</span><span class="">Nuevo Registro</span></button><div class="h-6 w-px bg-surface-container-highest"></div><button aria-label="Notificaciones TI" class="relative p-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low rounded-lg transition-colors" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-1.5 right-1.5 w-4 h-4 bg-error text-on-error font-code-asset text-[10px] font-bold rounded-full flex items-center justify-center leading-none">3</span></button><div class="flex items-center gap-2 pl-space-xs"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-2 ring-surface-container-highest" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxK_QkMrsZnBHp8XkkvA8D7i3q1zTQ9klW0-vkWuuQttAuh3mwGMWFzJE6DenhCpsbtW2ZHyu7ZW5nA-I-6exh1TN2YdzDA5_nL0UEbDQjcx6T7POkDDU4TtF2_oMQz3zj5VX0VpitTmABSxFrHMQsfCpW4TFlToV-wNrUssIP4hz5wXn0t06jFRQ1hNCHtrx2lac9tjW9uI4gRRo_ot6Fz5txDdK3FsBKT-mI_g"><div class="hidden xl:flex flex-col text-left"><span class="font-label-sm text-label-sm text-on-surface font-semibold leading-none">Carlos Vega</span><span class="font-body-sm text-[11px] text-outline leading-tight mt-0.5">Admin Matriz</span></div></div></div></header><main class="w-full pt-16 px-space-margin bg-surface"><div class="py-space-md flex items-center gap-1.5 text-body-sm font-body-sm text-outline"><span class="material-symbols-outlined text-[16px]">home</span><span class="">Inicio</span><span class="material-symbols-outlined text-[14px]">chevron_right</span><span class="text-primary-container font-semibold">Dashboard General</span></div><div class="flex flex-col w-full">
+<!-- Executive Header & Quick Actions -->
+<div class="flex flex-col xl:flex-row xl:items-center justify-between gap-space-md mb-space-lg">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-surface-container-high text-primary-container font-label-sm text-label-sm font-semibold">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+          Supervisión TI En Vivo
+        </span>
+<span class="text-outline font-label-sm text-label-sm">•</span>
+<span class="text-outline font-label-sm text-label-sm">Actualizado hace 4 min</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-primary font-bold tracking-tight">
+        Dashboard General de Activos TI
+      </h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-3xl">
+        Supervisión en tiempo real de parque tecnológico y biomédico en matrices, bodegas y centrales médicas a nivel nacional.
+      </p>
+</div>
+<!-- Toolbar Filters & CTAs -->
+<div class="flex flex-wrap items-center gap-space-sm self-start xl:self-auto">
+<!-- Date Range Select -->
+<div class="relative">
+<button class="h-10 px-3.5 bg-surface-container-lowest text-on-surface font-label-sm text-label-sm font-medium rounded-lg shadow-sm flex items-center gap-2 hover:bg-surface-container-low transition-colors" id="dateRangeBtn" type="button">
+<span class="material-symbols-outlined text-[18px] text-outline">calendar_today</span>
+<span class="">Últimos 30 días</span>
+<span class="material-symbols-outlined text-[16px] text-outline">expand_more</span>
+</button>
+</div>
+<!-- Active Clinic/HQ Select -->
+<div class="relative">
+<button class="h-10 px-3.5 bg-surface-container-lowest text-on-surface font-label-sm text-label-sm font-medium rounded-lg shadow-sm flex items-center gap-2 hover:bg-surface-container-low transition-colors" id="scopeFilterBtn" type="button">
+<span class="material-symbols-outlined text-[18px] text-secondary">domain</span>
+<span class="font-semibold text-primary">Nacional - Todas las Sedes</span>
+<span class="material-symbols-outlined text-[16px] text-outline">expand_more</span>
+</button>
+</div>
+<!-- Secondary Export Action -->
+<button class="h-10 px-4 bg-surface-container-lowest text-on-surface-variant hover:text-primary font-label-sm text-label-sm font-semibold rounded-lg shadow-sm flex items-center gap-1.5 hover:bg-surface-container-low transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]">ios_share</span>
+<span class="">Exportar Reporte</span>
+</button>
+<!-- Primary Cyan Action Button -->
+<button class="h-10 px-4 bg-secondary hover:bg-on-secondary-fixed-variant text-on-secondary font-label-sm text-label-sm font-semibold rounded-lg shadow-md flex items-center gap-2 transition-all" type="button">
+<span class="material-symbols-outlined text-[20px]">swap_horiz</span>
+<span class="">+ Nuevo Traslado / Ingreso</span>
+</button>
+</div>
+</div>
+<!-- KPI Statistical Summary Bar (4 Columns) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-space-md mb-space-xl">
+<!-- Card 1: Total Activos -->
+<div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-surface-container-low rounded-full opacity-60 pointer-events-none group-hover:scale-110 transition-transform"></div>
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm text-outline font-semibold uppercase tracking-wider">Total Activos TI Nacional</span>
+<div class="w-9 h-9 rounded-lg bg-surface-container-low text-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">devices</span>
+</div>
+</div>
+<div class="flex items-baseline gap-2 mb-1">
+<span class="font-headline-xl text-headline-xl text-primary font-bold">3,428</span>
+<span class="inline-flex items-center text-[11px] font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[14px] mr-0.5">trending_up</span>+3.8%
+          </span>
+</div>
+</div>
+<div class="pt-3 flex flex-col gap-1">
+<div class="text-body-sm font-body-sm text-on-surface-variant flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class=""><strong>+124</strong> ingresados este mes</span>
+</div>
+<span class="text-body-sm font-body-sm text-outline">98.4% asignados formalmente a sedes</span>
+</div>
+</div>
+<!-- Card 2: Operatividad & Disponibilidad -->
+<div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-surface-container-low rounded-full opacity-60 pointer-events-none group-hover:scale-110 transition-transform"></div>
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm text-outline font-semibold uppercase tracking-wider">Operatividad &amp; Salud</span>
+<div class="w-9 h-9 rounded-lg bg-surface-container-low text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">health_and_safety</span>
+</div>
+</div>
+<div class="flex items-baseline gap-2 mb-1">
+<span class="font-headline-xl text-headline-xl text-primary font-bold">93.2%</span>
+<span class="text-body-sm font-body-sm font-medium text-emerald-600">Estado Óptimo</span>
+</div>
+</div>
+<div class="pt-3 flex flex-col gap-2">
+<div class="w-full h-2 rounded-full bg-surface-container-highest overflow-hidden flex">
+<div class="bg-secondary h-full rounded-full" style="width: 93.2%"></div>
+</div>
+<span class="text-body-sm font-body-sm text-on-surface-variant">
+<strong>3,195</strong> de 3,428 equipos 100% operativos
+        </span>
+</div>
+</div>
+<!-- Card 3: Traslados en Tránsito -->
+<div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-surface-container-low rounded-full opacity-60 pointer-events-none group-hover:scale-110 transition-transform"></div>
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm text-outline font-semibold uppercase tracking-wider">Traslados en Tránsito</span>
+<div class="w-9 h-9 rounded-lg bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">local_shipping</span>
+</div>
+</div>
+<div class="flex items-baseline gap-2 mb-1">
+<span class="font-headline-xl text-headline-xl text-primary font-bold">84</span>
+<span class="text-title-sm font-title-sm text-on-surface-variant font-medium">equipos en ruta</span>
+</div>
+</div>
+<div class="pt-3 flex flex-col gap-1.5">
+<div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-amber-50 text-amber-800 text-[11px] font-semibold w-fit">
+<span class="material-symbols-outlined text-[14px]">pending_actions</span>
+          3 recepciones parciales pendientes
+        </div>
+<span class="text-body-sm font-body-sm text-outline">Distribuidos en 8 guías activas</span>
+</div>
+</div>
+<!-- Card 4: Incidencias & Bajas -->
+<div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-error-container text-on-error-container rounded-full opacity-25 pointer-events-none group-hover:scale-110 transition-transform"></div>
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm text-outline font-semibold uppercase tracking-wider">Incidencias &amp; Bajas</span>
+<div class="w-9 h-9 rounded-lg bg-error-container text-on-error-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">report_problem</span>
+</div>
+</div>
+<div class="flex items-baseline gap-2 mb-1">
+<span class="font-headline-xl text-headline-xl text-error font-bold">149</span>
+<span class="text-title-sm font-title-sm text-outline font-medium">en observación</span>
+</div>
+</div>
+<div class="pt-3 flex flex-col gap-1.5">
+<div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-rose-50 text-rose-700 text-[11px] font-semibold w-fit">
+<span class="material-symbols-outlined text-[14px]">photo_camera</span>
+          28 requieren peritaje fotográfico
+        </div>
+<span class="text-body-sm font-body-sm text-outline">Pre-aprobación para baja/reparación</span>
+</div>
+</div>
+</div>
+<!-- Central Work Area: Asymmetrical 8 / 4 Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start mb-space-xl">
+<!-- LEFT COLUMN (Span 8): High Density Logistics & Critical Assets -->
+<div class="lg:col-span-8 flex flex-col gap-space-lg">
+<!-- Module 1: Active Transfers & Partial Receptions -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col">
+<!-- Module Header & Interactive Filter Tabs -->
+<div class="p-space-lg pb-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-surface-container-lowest">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container-high text-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">departure_board</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-primary font-bold">
+                Traslados Logísticos en Curso
+              </h2>
+<p class="font-body-sm text-body-sm text-outline">
+                Control de despachos entre bodegas y verificación física en destino
+              </p>
+</div>
+</div>
+<!-- Category Tabs -->
+<div class="inline-flex p-1 rounded-lg bg-surface-container-low self-start sm:self-center">
+<button class="tab-btn px-3 py-1 text-label-sm font-label-sm font-semibold rounded-md bg-surface-container-lowest text-primary shadow-sm transition-all" data-tab="all" type="button">
+              Todos (8)
+            </button>
+<button class="tab-btn px-3 py-1 text-label-sm font-label-sm font-medium rounded-md text-on-surface-variant hover:text-primary transition-all" data-tab="partial" type="button">
+              Parciales (3)
+            </button>
+<button class="tab-btn px-3 py-1 text-label-sm font-label-sm font-medium rounded-md text-on-surface-variant hover:text-primary transition-all" data-tab="enroute" type="button">
+              En Ruta (5)
+            </button>
+</div>
+</div>
+<!-- Data Table Container -->
+<div class="w-full overflow-x-auto">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead>
+<tr class="bg-surface-container-low text-outline text-[11px] font-semibold uppercase tracking-wider">
+<th class="py-3 px-space-lg">Guía / Traslado</th>
+<th class="py-3 px-4">Ruta (Origen → Destino)</th>
+<th class="py-3 px-4">Lote / Equipamiento</th>
+<th class="py-3 px-4">Verificación Física</th>
+<th class="py-3 px-4">Custodio TI</th>
+<th class="py-3 px-space-lg text-right">Acción</th>
+</tr>
+</thead>
+<tbody class="text-on-surface">
+<!-- Row 1: Parcial Pending -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-3.5 px-space-lg font-code-asset text-code-asset font-semibold text-primary">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-amber-500"></span>
+<span class="">#TR-2024-089</span>
+</div>
+<span class="text-[10px] text-outline font-normal block mt-0.5">Despacho 08:30 AM</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col">
+<span class="font-semibold text-primary leading-tight">Bodega Matriz Quito</span>
+<div class="flex items-center gap-1 text-[11px] text-outline mt-0.5">
+<span class="material-symbols-outlined text-[13px]">arrow_forward</span>
+<span class="text-secondary font-medium">Central Cuenca Consultorios</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container-high text-primary-container font-medium text-[11px]">
+<span class="material-symbols-outlined text-[13px]">biotech</span>
+                    Valija Biomédica (15 pcs)
+                  </span>
+</td>
+<td class="py-3.5 px-4 min-w-[170px]">
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between text-[11px]">
+<span class="font-semibold text-amber-700">12/15 Recibidos</span>
+<span class="font-code-asset text-outline">80%</span>
+</div>
+<div class="w-full h-1.5 rounded-full bg-surface-container-highest overflow-hidden flex">
+<div class="bg-amber-500 h-full rounded-full" style="width: 80%"></div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-primary-container text-on-primary text-[10px] flex items-center justify-center font-bold">FR</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant truncate max-w-[110px]">Ing. F. Ramos</span>
+</div>
+</td>
+<td class="py-3.5 px-space-lg text-right">
+<button class="h-8 px-2.5 bg-secondary-fixed hover:bg-secondary text-on-secondary-fixed hover:text-on-secondary font-label-sm text-label-sm font-semibold rounded-lg shadow-sm transition-all inline-flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[15px]">fact_check</span>
+<span class="">Gestionar</span>
+</button>
+</td>
+</tr>
+<!-- Row 2: En Ruta -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-3.5 px-space-lg font-code-asset text-code-asset font-semibold text-primary">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="">#TR-2024-094</span>
+</div>
+<span class="text-[10px] text-outline font-normal block mt-0.5">Despacho 11:15 AM</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col">
+<span class="font-semibold text-primary leading-tight">Bodega Costa Guayaquil</span>
+<div class="flex items-center gap-1 text-[11px] text-outline mt-0.5">
+<span class="material-symbols-outlined text-[13px]">arrow_forward</span>
+<span class="text-secondary font-medium">Central Urdesa Consultorios</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container-high text-primary-container font-medium text-[11px]">
+<span class="material-symbols-outlined text-[13px]">laptop_mac</span>
+                    Laptops Dell 5430 (24 pcs)
+                  </span>
+</td>
+<td class="py-3.5 px-4 min-w-[170px]">
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between text-[11px]">
+<span class="font-semibold text-secondary">0/24 En Tránsito</span>
+<span class="font-code-asset text-outline">0%</span>
+</div>
+<div class="w-full h-1.5 rounded-full bg-surface-container-highest overflow-hidden flex">
+<div class="bg-secondary h-full rounded-full" style="width: 0%"></div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-surface-container-highest text-on-surface-variant text-[10px] flex items-center justify-center font-bold">LP</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant truncate max-w-[110px]">Téc. L. Paredes</span>
+</div>
+</td>
+<td class="py-3.5 px-space-lg text-right">
+<button class="h-8 px-2.5 bg-surface-container-low hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm font-medium rounded-lg transition-all inline-flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[15px]">radar</span>
+<span class="">Rastrear</span>
+</button>
+</td>
+</tr>
+<!-- Row 3: Parcial Pending -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-3.5 px-space-lg font-code-asset text-code-asset font-semibold text-primary">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-amber-500"></span>
+<span class="">#TR-2024-102</span>
+</div>
+<span class="text-[10px] text-outline font-normal block mt-0.5">Ayer, 16:40 PM</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col">
+<span class="font-semibold text-primary leading-tight">Bodega Matriz Quito</span>
+<div class="flex items-center gap-1 text-[11px] text-outline mt-0.5">
+<span class="material-symbols-outlined text-[13px]">arrow_forward</span>
+<span class="text-secondary font-medium">Central Manta Hospitalaria</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container-high text-primary-container font-medium text-[11px]">
+<span class="material-symbols-outlined text-[13px]">dns</span>
+                    Servidores Periféricos (6 pcs)
+                  </span>
+</td>
+<td class="py-3.5 px-4 min-w-[170px]">
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between text-[11px]">
+<span class="font-semibold text-amber-700">4/6 Recibidos</span>
+<span class="font-code-asset text-outline">66%</span>
+</div>
+<div class="w-full h-1.5 rounded-full bg-surface-container-highest overflow-hidden flex">
+<div class="bg-amber-500 h-full rounded-full" style="width: 66%"></div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-primary-container text-on-primary text-[10px] flex items-center justify-center font-bold">DM</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant truncate max-w-[110px]">Ing. D. Mendoza</span>
+</div>
+</td>
+<td class="py-3.5 px-space-lg text-right">
+<button class="h-8 px-2.5 bg-secondary-fixed hover:bg-secondary text-on-secondary-fixed hover:text-on-secondary font-label-sm text-label-sm font-semibold rounded-lg shadow-sm transition-all inline-flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[15px]">fact_check</span>
+<span class="">Gestionar</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer -->
+<div class="px-space-lg py-3 bg-surface-container-low/40 flex items-center justify-between text-body-sm font-body-sm text-outline">
+<span class="">Mostrando 3 de 8 traslados activos nacionales</span>
+<a class="text-secondary hover:text-primary font-semibold text-label-sm font-label-sm inline-flex items-center gap-1" href="#">
+<span class="">Ver Centro Logístico Completo</span>
+<span class="material-symbols-outlined text-[16px]">arrow_right_alt</span>
+</a>
+</div>
+</div>
+<!-- Module 2: Critical Asset Anomalies & Audit Attention -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-space-lg">
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-error-container text-on-error-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">warning</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-primary font-bold">
+                Activos Críticos con Alertas &amp; Auditoría
+              </h2>
+<p class="font-body-sm text-body-sm text-outline">
+                Equipos con observaciones físicas, discrepancias o procesos de baja en curso
+              </p>
+</div>
+</div>
+<button class="text-secondary hover:text-primary font-label-sm text-label-sm font-semibold inline-flex items-center gap-1" type="button">
+<span class="">Ver los 28 casos</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Anomaly Card 1: Damage & Photo Evidence Needed -->
+<div class="bg-surface-container-low rounded-xl p-4 flex flex-col justify-between hover:bg-surface-container transition-colors">
+<div class="flex flex-col gap-2">
+<div class="flex items-start justify-between">
+<!-- Dual Permanent Codes -->
+<div class="flex flex-wrap items-center gap-1.5">
+<span class="px-2 py-0.5 rounded bg-surface-container-highest font-code-asset text-code-asset font-bold text-primary">
+                    INV-004120
+                  </span>
+<span class="px-2 py-0.5 rounded bg-primary-container text-on-primary font-code-asset text-code-asset font-semibold">
+                    MON-000843
+                  </span>
+</div>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-rose-100 text-rose-800 text-[11px] font-semibold">
+<span class="material-symbols-outlined text-[13px]">broken_image</span>
+                  Daño Físico
+                </span>
+</div>
+<div>
+<h3 class="font-title-sm text-title-sm text-primary font-bold">
+                  Monitor Gráfico Clínico 27" Eizo RadiForce
+                </h3>
+<span class="text-body-sm font-body-sm text-outline flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[14px]">apartment</span>
+                  Central Médica Kennedy • Sala de Diagnóstico 3
+                </span>
+</div>
+<div class="p-2.5 rounded-lg bg-surface-container-lowest text-body-sm font-body-sm text-on-surface-variant flex items-start gap-2">
+<span class="material-symbols-outlined text-rose-600 text-[18px] shrink-0 mt-0.5">error</span>
+<p class="text-[12px] leading-relaxed">
+                  Falla en panel IPS tras oscilación eléctrica. Requiere peritaje fotográfico obligatorio antes de emitir orden de reemplazo.
+                </p>
+</div>
+</div>
+<div class="pt-3 mt-3 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<img class="w-6 h-6 rounded-full object-cover" data-alt="Portrait of an experienced IT support engineer wearing a navy polo shirt and identification badge, smiling confidently in a modern server room environment with soft medical blue lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmhMJBo6ftn53SR4zZDfgNXvkzjGj5uM8LwBLenf7IbvPAJUUz9KkurfGtaModVMOKtiyhHAkxJqcg8QQkW2hjCB0txkWivNdVIUKUvfBVyO3sWMFccsMUfEzcx9I7LEQo5isf8lUJkNFdEyRh_yTide3inztMnx-gixs-G8HHdItuLUce5eBO27I8ALZI7TW-FziyJEwkEpmrqP1yrOthQe41BYO7nsEK1B59rA">
+<span class="text-[11px] font-medium text-outline">Resp: Téc. Gabriel Ortiz</span>
+</div>
+<button class="h-7 px-3 bg-primary hover:bg-primary-container text-on-primary font-label-sm text-label-sm font-semibold rounded-md shadow-sm transition-all inline-flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[14px]">add_a_photo</span>
+<span class="">Subir Peritaje</span>
+</button>
+</div>
+</div>
+<!-- Anomaly Card 2: Reassigned & Audit Completed -->
+<div class="bg-surface-container-low rounded-xl p-4 flex flex-col justify-between hover:bg-surface-container transition-colors">
+<div class="flex flex-col gap-2">
+<div class="flex items-start justify-between">
+<!-- Dual Permanent Codes -->
+<div class="flex flex-wrap items-center gap-1.5">
+<span class="px-2 py-0.5 rounded bg-surface-container-highest font-code-asset text-code-asset font-bold text-primary">
+                    INV-001840
+                  </span>
+<span class="px-2 py-0.5 rounded bg-primary-container text-on-primary font-code-asset text-code-asset font-semibold">
+                    SRV-000042
+                  </span>
+</div>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-semibold">
+<span class="material-symbols-outlined text-[13px]">verified</span>
+                  Auditoría OK
+                </span>
+</div>
+<div>
+<h3 class="font-title-sm text-title-sm text-primary font-bold">
+                  Servidor Periférico PACS (Dell PowerEdge R340)
+                </h3>
+<span class="text-body-sm font-body-sm text-outline flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[14px]">apartment</span>
+                  Central Médica Portoviejo • Rack Biomédico Piso 1
+                </span>
+</div>
+<div class="p-2.5 rounded-lg bg-surface-container-lowest text-body-sm font-body-sm text-on-surface-variant flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px] shrink-0 mt-0.5">change_circle</span>
+<p class="text-[12px] leading-relaxed">
+                  Migración de almacenamiento concluida con sello pericial intacto. Reasignado formalmente para redundancia local de telemetría.
+                </p>
+</div>
+</div>
+<div class="pt-3 mt-3 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-secondary-fixed text-on-secondary-fixed text-[10px] flex items-center justify-center font-bold">TI</span>
+<span class="text-[11px] font-medium text-outline">Auditado por: Jefatura TI</span>
+</div>
+<button class="h-7 px-3 bg-surface-container-lowest hover:bg-surface-container-high text-primary font-label-sm text-label-sm font-semibold rounded-md shadow-sm transition-all inline-flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[14px]">visibility</span>
+<span class="">Ver Bitácora</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN (Span 4): Territorial Distribution & Custody Signatures -->
+<div class="lg:col-span-4 flex flex-col gap-space-lg">
+<!-- Module 3: Territorial Distribution by Bodega / Campus -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-space-lg flex flex-col">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high text-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">hub</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-primary font-bold">
+                Capacidad por Jurisdicción
+              </h2>
+<span class="text-body-sm font-body-sm text-outline">Inventario distribuido nacional</span>
+</div>
+</div>
+</div>
+<!-- Jurisdictions List -->
+<div class="flex flex-col gap-3.5">
+<!-- Hub 1: Quito -->
+<div class="p-3.5 rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors">
+<div class="flex items-center justify-between mb-1.5">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+<span class="font-title-sm text-title-sm font-semibold text-primary">Matriz Quito</span>
+</div>
+<span class="font-code-asset text-code-asset font-bold text-primary">1,420 activos</span>
+</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm text-outline mb-2 text-[12px]">
+<span class="">Bodega Central TI Matriz</span>
+<span class="font-semibold text-emerald-700">98% operatividad</span>
+</div>
+<div class="w-full h-1.5 rounded-full bg-surface-container-highest overflow-hidden mb-2">
+<div class="bg-primary h-full rounded-full" style="width: 41.4%"></div>
+</div>
+<div class="flex items-center gap-1.5 text-[11px] text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-secondary">sync_alt</span>
+<span class="">4 traslados activos en despacho</span>
+</div>
+</div>
+<!-- Hub 2: Guayaquil -->
+<div class="p-3.5 rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors">
+<div class="flex items-center justify-between mb-1.5">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span class="font-title-sm text-title-sm font-semibold text-primary">Matriz Guayaquil</span>
+</div>
+<span class="font-code-asset text-code-asset font-bold text-primary">1,180 activos</span>
+</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm text-outline mb-2 text-[12px]">
+<span class="">Bodega Costa (Centro Médico)</span>
+<span class="font-semibold text-emerald-700">95% operatividad</span>
+</div>
+<div class="w-full h-1.5 rounded-full bg-surface-container-highest overflow-hidden mb-2">
+<div class="bg-secondary h-full rounded-full" style="width: 34.4%"></div>
+</div>
+<div class="flex items-center gap-1.5 text-[11px] text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-secondary">sync_alt</span>
+<span class="">2 traslados activos en despacho</span>
+</div>
+</div>
+<!-- Hub 3: Cuenca -->
+<div class="p-3.5 rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors">
+<div class="flex items-center justify-between mb-1.5">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container"></span>
+<span class="font-title-sm text-title-sm font-semibold text-primary">Central Cuenca</span>
+</div>
+<span class="font-code-asset text-code-asset font-bold text-primary">340 activos</span>
+</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm text-outline mb-2 text-[12px]">
+<span class="">Consultorios y Diagnóstico</span>
+<span class="font-semibold text-emerald-700">92% operatividad</span>
+</div>
+<div class="w-full h-1.5 rounded-full bg-surface-container-highest overflow-hidden mb-2">
+<div class="bg-primary-container h-full rounded-full" style="width: 9.9%"></div>
+</div>
+<div class="flex items-center gap-1.5 text-[11px] text-amber-700 font-medium">
+<span class="material-symbols-outlined text-[14px]">hourglass_top</span>
+<span class="">1 traslado pendiente de recepción</span>
+</div>
+</div>
+<!-- Hub 4: Manabí -->
+<div class="p-3.5 rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors">
+<div class="flex items-center justify-between mb-1.5">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-outline"></span>
+<span class="font-title-sm text-title-sm font-semibold text-primary">Centrales Manabí</span>
+</div>
+<span class="font-code-asset text-code-asset font-bold text-primary">288 activos</span>
+</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm text-outline mb-2 text-[12px]">
+<span class="">Manta &amp; Portoviejo</span>
+<span class="font-semibold text-emerald-700">94% operatividad</span>
+</div>
+<div class="w-full h-1.5 rounded-full bg-surface-container-highest overflow-hidden mb-2">
+<div class="bg-outline h-full rounded-full" style="width: 8.4%"></div>
+</div>
+<div class="flex items-center gap-1.5 text-[11px] text-emerald-700 font-medium">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+<span class="">Inventario al día y conciliado</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Module 4: Digital Act Signatures (Keycloak / Custody Transfer) -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-space-lg flex flex-col">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high text-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">draw</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-primary font-bold">
+                Actas por Firmar
+              </h2>
+<span class="text-body-sm font-body-sm text-outline">Firma digital obligatoria</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed text-[11px] font-bold">
+            2 Pendientes
+          </span>
+</div>
+<div class="flex flex-col gap-3">
+<!-- Act 1 -->
+<div class="p-3.5 rounded-xl bg-surface-container-low flex flex-col gap-2.5">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-code-asset text-code-asset font-bold text-primary">#ACT-7412</span>
+<h4 class="font-title-sm text-[13px] text-primary font-semibold leading-tight mt-0.5">
+                  Entrega-Recepción Lote 5 CPUs
+                </h4>
+</div>
+<span class="px-2 py-0.5 rounded bg-amber-100 text-amber-900 text-[10px] font-bold">
+                Firma Médica
+              </span>
+</div>
+<div class="flex items-center gap-2 text-body-sm text-[12px] text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-outline">person</span>
+<span class="">Custodio: Dr. Fabián Morales (Jefe Imagenología)</span>
+</div>
+<div class="text-[11px] text-outline">
+              Sede: Matriz Quito • Espera firma digital por Keycloak
+            </div>
+<div class="flex items-center justify-between pt-1">
+<button class="text-secondary hover:text-primary font-label-sm text-label-sm font-semibold inline-flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[15px]">mail</span>
+<span class="">Enviar Recordatorio</span>
+</button>
+<button class="h-7 px-3 bg-surface-container-lowest hover:bg-surface-container-high text-primary font-label-sm text-label-sm font-semibold rounded-md shadow-sm transition-all inline-flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[14px]">preview</span>
+<span class="">Ver Acta</span>
+</button>
+</div>
+</div>
+<!-- Act 2 -->
+<div class="p-3.5 rounded-xl bg-surface-container-low flex flex-col gap-2.5">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-code-asset text-code-asset font-bold text-primary">#ACT-7399</span>
+<h4 class="font-title-sm text-[13px] text-primary font-semibold leading-tight mt-0.5">
+                  Traslado y Custodia Urdesa
+                </h4>
+</div>
+<span class="px-2 py-0.5 rounded bg-sky-100 text-sky-900 text-[10px] font-bold">
+                Validación TI
+              </span>
+</div>
+<div class="flex items-center gap-2 text-body-sm text-[12px] text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-outline">laptop_chromebook</span>
+<span class="">12 Estaciones de Atención Clínica</span>
+</div>
+<div class="text-[11px] text-outline">
+              Sede: Central Urdesa • Recepcionado por Téc. Operativo
+            </div>
+<div class="pt-1">
+<button class="w-full h-8 bg-primary hover:bg-primary-container text-on-primary font-label-sm text-label-sm font-semibold rounded-lg shadow-sm transition-all flex items-center justify-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[16px]">fingerprint</span>
+<span class="">Revisar y Firmar Electrónicamente</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Banner for Quick Digital Sign Off -->
+<div class="mt-4 p-3 rounded-lg bg-surface-container-high/60 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+</div>
+<div class="flex flex-col text-[11px]">
+<span class="font-semibold text-primary">Certificado Activo: Carlos Vega</span>
+<span class="text-outline">Token PKI Veris Corporativo vigente</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Simple interactive tab toggle for transfer categories
+  document.querySelectorAll('.tab-btn').forEach(button => {
+    button.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('bg-surface-container-lowest', 'text-primary', 'shadow-sm', 'font-semibold');
+        btn.classList.add('text-on-surface-variant', 'font-medium');
+      });
+      button.classList.remove('text-on-surface-variant', 'font-medium');
+      button.classList.add('bg-surface-container-lowest', 'text-primary', 'shadow-sm', 'font-semibold');
+    });
+  });
+</script></main></div></body></html>

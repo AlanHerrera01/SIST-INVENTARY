@@ -1,10 +1,10 @@
 # Sistema de Inventario Tecnológico Multicentro
 
-Estructura de desarrollo de Fase 01 y esquema de persistencia de **Fase 02**. Incluye React, TypeScript, Vite, Tailwind CSS, shadcn/ui; Spring Boot con Java 21; MySQL Community con Flyway; y Keycloak con un realm vacío de desarrollo.
+Aplicación multicentro con React, TypeScript, Vite, Tailwind CSS y shadcn/ui; Spring Boot con Java 21; MySQL Community con Flyway y Keycloak. La **Fase 05** completa la estructura visual, navegación por permisos y centros, variantes de administración, técnicos y consulta.
 
-Incluye 14 migraciones y 38 tablas, sin datos empresariales precargados. No hay servicios de inventario, cliente OIDC, login ni autorización funcional. El botón de la pantalla inicial consulta únicamente la disponibilidad técnica del backend.
+El repositorio contiene integración de identidad, acceso y organización. La interfaz consume los endpoints existentes y muestra errores cuando no están disponibles. Las funciones futuras de inventario no se presentan como operativas.
 
-> Nota de alcance: el árbol de trabajo actual contiene código de autenticación de una fase posterior aún sin commitear (`backend/src/main/java/com/veris/inventory/identity/`). No forma parte de Fase 01 y debe aislarse antes de cerrarla. Detalle en [verificación de Fase 01](docs/VERIFICACION-FASE-01.md).
+Consulte [implementación y verificación de Fase 05](docs/VERIFICACION-FASE-05.md), con pruebas reproducibles y capturas. Los informes de fases anteriores conservan su alcance histórico; la verificación visual no certifica el flujo OIDC completo.
 
 La Fase 02 se describe en [esquema y relaciones](docs/ESQUEMA-FASE-02.md), [diccionario de datos](docs/DICCIONARIO-DATOS-FASE-02.md), [migración y recuperación](docs/OPERACION-ESQUEMA-FASE-02.md) y [verificación](docs/VERIFICACION-FASE-02.md). Se utiliza un solo `compose.yml` de desarrollo.
 
@@ -16,7 +16,7 @@ La Fase 02 se describe en [esquema y relaciones](docs/ESQUEMA-FASE-02.md), [dicc
 | `backend/` | Aplicación Spring Boot, configuración y salud de dependencias. |
 | `infra/` | Inicialización de MySQL, realm Keycloak y scripts locales. |
 | `docs/` | Convenciones, decisiones técnicas y resultados de verificación. |
-| `ESPECIFICACION-FASE-00.md` | Línea base de planificación original, conservada sin reescribir. |
+| `docs/ESPECIFICACION-FASE-00.md` | Línea base de planificación original. |
 
 ## Arranque con Docker (recomendado)
 
@@ -117,18 +117,18 @@ En PowerShell puede utilizarse `npm.cmd` si la política de ejecución bloquea `
 
 Copiar automáticamente `.env.example` mediante el script inicial. `.env` contiene solo configuración no sensible, está ignorado por Git y Compose lo carga desde la raíz. No introducir secretos en variables `VITE_*`: pasan al navegador.
 
-Las cuatro credenciales se generan con 256 bits aleatorios y se guardan sin BOM en `.secrets/`, fuera de Git y de los contextos de build. En Windows se restringen ACL al usuario actual y SYSTEM. En Unix el directorio es 0700; archivos 0644 para lectura de montajes por contenedores no privilegiados, protegidos en el host por el directorio privado. Verificar los permisos según el entorno. Compose secrets monta archivos: **no es una bóveda ni cifra los archivos del host**.
+Las credenciales se generan con 256 bits aleatorios y se guardan sin BOM en `.secrets/`, fuera de Git y de los contextos de build. En Windows se restringen ACL al usuario actual y SYSTEM. En Unix el directorio es 0700; archivos 0644 para lectura de montajes por contenedores no privilegiados, protegidos en el host por el directorio privado. Verificar los permisos según el entorno. Compose secrets monta archivos: **no es una bóveda ni cifra los archivos del host**.
 
 Spring lee `app_db_password` con configtree; Keycloak recibe sus secretos desde un script que los exporta al proceso; MySQL usa las opciones `_FILE`. Nunca se pasan secretos como argumentos de build. No copiar `.secrets` a imágenes. En producción se requiere gestor de secretos, TLS, política de acceso y rotación, fuera de esta fase.
 
 La consola de administración de Keycloak usa `KEYCLOAK_ADMIN_USER` y el archivo privado `keycloak_admin_password`. Solo consultar el valor localmente cuando sea necesario; no pegarlo en tickets o logs. El administrador bootstrap es una cuenta técnica de desarrollo del realm maestro, no un usuario funcional de la aplicación.
 
-Si se cambian los puertos, ajustar `.env` y los parámetros del smoke test. Cambiar `KEYCLOAK_PORT` requiere actualizar `KEYCLOAK_PUBLIC_URL` y `OIDC_ISSUER_URI`. La URL pública identifica al emisor, mientras el backend Docker consulta discovery por la red interna; compara el issuer recibido con el público. No se validan tokens en esta fase.
+Si se cambian los puertos, ajustar `.env` y los parámetros del smoke test. Cambiar `KEYCLOAK_PORT` requiere actualizar `KEYCLOAK_PUBLIC_URL` y `OIDC_ISSUER_URI`. La URL pública identifica al emisor, mientras el backend Docker consulta discovery por la red interna; compara el issuer recibido con el público. La validación de tokens corresponde a la integración de identidad del backend.
 
 ## Límites del entorno
 
 Todos los puertos publicados se ligan a `127.0.0.1`. MySQL no usa TLS en la red Docker local y Keycloak se ejecuta con `start-dev`, realm sin exigencia de TLS para uso local. No exponer este Compose a redes externas ni usarlo como despliegue de producción. Los endpoints de salud no revelan detalles ni secretos; solo se exponen health e info de Actuator.
 
-El backend no aplica autenticación funcional: no existen endpoints de negocio. Antes de incorporarlos debe implementarse la política de identidad y autorización definida en las fases correspondientes.
+La interfaz utiliza la sesión existente del backend. Las pruebas de Fase 05 validan presentación y navegación; la autorización definitiva y el aislamiento de datos corresponden al servidor.
 
 Consulte [arquitectura](docs/ARQUITECTURA-FASE-01.md), [convenciones](docs/CONVENCIONES.md), [decisiones de Fase 01](docs/DECISIONES-FASE-01.md) y [resultados de verificación](docs/VERIFICACION-FASE-01.md). La disponibilidad real de Docker y los servicios se registra allí; esta guía de arranque no constituye evidencia de que se hayan iniciado.

@@ -1,3 +1,4 @@
+import { Home } from "lucide-react"
 import { Link, useLocation } from "react-router-dom"
 import {
   Breadcrumb,
@@ -17,21 +18,34 @@ export function RouteBreadcrumbs() {
   const isDetail = pathname !== item.to
   return (
     <Breadcrumb>
-      <BreadcrumbList>
+      <BreadcrumbList className="text-xs text-on-surface-variant">
+        {pathname !== "/" && (
+          <>
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link to="/" className="inline-flex items-center gap-1.5">
+                  <Home className="size-3.5" aria-hidden="true" />
+                  Inicio
+                </Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+          </>
+        )}
         <BreadcrumbItem>
           {isDetail ? (
             <BreadcrumbLink asChild>
               <Link to={item.to}>{item.label}</Link>
             </BreadcrumbLink>
           ) : (
-            <BreadcrumbPage>{item.label}</BreadcrumbPage>
+            <BreadcrumbPage className="text-primary">{item.label}</BreadcrumbPage>
           )}
         </BreadcrumbItem>
         {isDetail && (
           <>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbPage>Detalle</BreadcrumbPage>
+              <BreadcrumbPage className="text-primary">Detalle</BreadcrumbPage>
             </BreadcrumbItem>
           </>
         )}

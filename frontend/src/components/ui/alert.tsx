@@ -5,8 +5,8 @@ import { cn } from "@/lib/utils"
 const alertVariants = cva("relative w-full rounded-lg border p-4 text-sm [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg+div]:pl-7", {
   variants: {
     variant: {
-      default: "bg-card text-foreground",
-      destructive: "border-red-200 bg-red-50 text-red-800 [&>svg]:text-red-600",
+      default: "border-line bg-surface-container-lowest text-foreground",
+      destructive: "border-rose-200 bg-rose-50 text-rose-800 [&>svg]:text-rose-600",
       warning: "border-amber-200 bg-amber-50 text-amber-800 [&>svg]:text-amber-600",
       success: "border-emerald-200 bg-emerald-50 text-emerald-800 [&>svg]:text-emerald-600",
     },

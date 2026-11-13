@@ -46,7 +46,7 @@ public class RoleServiceImpl implements RoleService {
                 ORDER BY r.code
                 """, (rs, n) -> new RoleView(rs.getString(1), rs.getString(2), rs.getString(3),
                         rs.getString(4), permissionsOf(organizationId, rs.getString(1)),
-                        rs.getLong(5), rs.getString(6)), organizationId);
+                        rs.getLong(6), rs.getString(5)), organizationId);
     }
 
     public RoleView detail(String organizationId, AccessContext ctx, String roleId) {
@@ -64,7 +64,7 @@ public class RoleServiceImpl implements RoleService {
                 WHERE r.organization_id = UUID_TO_BIN(?, 1) AND r.id = UUID_TO_BIN(?, 1)
                 """, (rs, n) -> new RoleView(rs.getString(1), rs.getString(2), rs.getString(3),
                         rs.getString(4), permissionsOf(organizationId, rs.getString(1)),
-                        rs.getLong(5), rs.getString(6)), organizationId, roleId).stream().findFirst()
+                        rs.getLong(6), rs.getString(5)), organizationId, roleId).stream().findFirst()
                 .orElseThrow(() -> ApiException.notFound("ROLE_NOT_FOUND", "Rol no encontrado."));
     }
 

@@ -1,0 +1,348 @@
+<!DOCTYPE html><html lang="es" style=""><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "error-container": "#ffdad6", "on-primary-fixed-variant": "#2c447f", "on-error": "#ffffff", "on-secondary-fixed-variant": "#004c6b", "on-secondary-fixed": "#001e2d", "on-surface-variant": "#444650", "surface-dim": "#d2d9f4", "inverse-surface": "#283044", "on-primary-fixed": "#001847", "surface-variant": "#dae2fd", "tertiary-container": "#30277b", "on-tertiary-container": "#9a93ec", "surface-bright": "#faf8ff", "surface-container-lowest": "#ffffff", "error": "#ba1a1a", "secondary-fixed": "#c6e7ff", "inverse-primary": "#b2c5ff", "primary-fixed-dim": "#b2c5ff", "tertiary-fixed-dim": "#c5c0ff", "on-background": "#131b2e", "on-error-container": "#93000a", "surface-container-high": "#e2e7ff", "inverse-on-surface": "#eef0ff", "outline": "#757781", "secondary": "#00658d", "on-primary-container": "#859cdd", "on-secondary": "#ffffff", "tertiary-fixed": "#e4dfff", "surface-container-highest": "#dae2fd", "on-secondary-container": "#004b69", "background": "#faf8ff", "on-primary": "#ffffff", "on-tertiary": "#ffffff", "secondary-container": "#41befd", "tertiary": "#1a0b66", "secondary-fixed-dim": "#81cfff", "surface-tint": "#455c99", "primary-fixed": "#dae2ff", "primary": "#001c50", "surface": "#faf8ff", "surface-container-low": "#f2f3ff", "on-surface": "#131b2e", "on-tertiary-fixed": "#150362", "primary-container": "#17326c", "on-tertiary-fixed-variant": "#423b8e", "outline-variant": "#c5c6d1", "surface-container": "#eaedff" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-xs": "0.25rem", "margin-mobile": "1rem", "space-sm": "0.5rem", "gutter-mobile": "0.75rem", "margin": "2rem", "space-lg": "1.5rem", "space-xl": "2.5rem", "gutter": "1.5rem", "space-md": "1rem" }, "fontFamily": { "headline-lg-mobile": [ "Inter" ], "headline-xl-mobile": [ "Inter" ], "label-md": [ "Inter" ], "body-md": [ "Inter" ], "headline-lg": [ "Inter" ], "title-sm": [ "Inter" ], "label-sm": [ "Inter" ], "headline-xl": [ "Inter" ], "body-lg": [ "Inter" ], "body-sm": [ "Inter" ], "code-asset": [ "Inter" ], "headline-md": [ "Inter" ] }, "fontSize": { "headline-lg-mobile": [ "1.25rem", { "lineHeight": "1.75rem", "letterSpacing": "-0.015em", "fontWeight": "600" } ], "headline-xl-mobile": [ "1.5rem", { "lineHeight": "2rem", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "label-md": [ "0.875rem", { "lineHeight": "1.25rem", "fontWeight": "500" } ], "body-md": [ "0.875rem", { "lineHeight": "1.25rem", "fontWeight": "400" } ], "headline-lg": [ "1.5rem", { "lineHeight": "2rem", "letterSpacing": "-0.02em", "fontWeight": "600" } ], "title-sm": [ "1rem", { "lineHeight": "1.5rem", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "label-sm": [ "0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.025em", "fontWeight": "500" } ], "headline-xl": [ "2rem", { "lineHeight": "2.5rem", "letterSpacing": "-0.025em", "fontWeight": "700" } ], "body-lg": [ "1rem", { "lineHeight": "1.5rem", "fontWeight": "400" } ], "body-sm": [ "0.75rem", { "lineHeight": "1rem", "fontWeight": "400" } ], "code-asset": [ "0.8125rem", { "lineHeight": "1rem", "letterSpacing": "0.05em", "fontWeight": "600" } ], "headline-md": [ "1.25rem", { "lineHeight": "1.75rem", "letterSpacing": "-0.015em", "fontWeight": "600" } ] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest shadow-[0_1px_8px_rgba(23,50,108,0.06)] z-50 flex flex-col justify-between"><div class="flex flex-col"><div class="h-16 px-space-lg flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="w-9 h-9 rounded-lg bg-primary-container flex items-center justify-center text-on-primary font-headline-md text-headline-md shadow-[0_1px_4px_rgba(23,50,108,0.2)]"><span class="material-symbols-outlined text-[22px]">local_hospital</span></div><div class="flex flex-col"><span class="font-headline-md text-title-sm text-primary-container font-bold tracking-tight leading-none">VERIS</span><span class="font-label-sm text-label-sm text-secondary font-medium tracking-wide uppercase mt-0.5">Gestión TI</span></div></div><button aria-label="Colapsar menú" class="p-space-xs text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low rounded-lg transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">dock_to_left</span></button></div><div class="px-space-md py-space-xs"><div class="px-space-sm py-space-xs text-label-sm font-label-sm uppercase tracking-wider text-outline font-semibold">Menú Principal</div></div><nav class="flex flex-col px-space-md gap-1" data-active-classes="bg-primary-container text-on-primary font-label-md rounded-lg shadow-[0_1px_3px_rgba(23,50,108,0.15)]"><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="dashboard-general" href="#"><span class="material-symbols-outlined text-[20px]">grid_view</span><span class="">Dashboard General</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md shadow-[0_1px_3px_rgba(23,50,108,0.15)] transition-all" data-path="inventario-nacional" href="#"><span class="material-symbols-outlined text-[20px]">inventory_2</span><span class="">Inventario Nacional</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="traslados-y-guias" href="#"><span class="material-symbols-outlined text-[20px]">local_shipping</span><span class="">Traslados y Guías</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="actas-y-firmas" href="#"><span class="material-symbols-outlined text-[20px]">assignment_turned_in</span><span class="">Actas y Firmas</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="equipos-mantenimiento" href="#"><span class="material-symbols-outlined text-[20px]">build_circle</span><span class="">Equipos en Mantenimiento</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="auditoria" href="#"><span class="material-symbols-outlined text-[20px]">verified</span><span class="">Auditoría</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low hover:text-on-surface transition-all" data-path="configuracion" href="#"><span class="material-symbols-outlined text-[20px]">settings</span><span class="">Configuración</span></a></nav></div><div class="p-space-md"><div class="p-space-sm rounded-xl bg-surface-container-low flex items-center justify-between"><div class="flex items-center gap-space-sm overflow-hidden"><div class="w-9 h-9 rounded-full bg-primary-container flex items-center justify-center text-on-primary font-label-md text-label-md shrink-0 font-bold">TI</div><div class="flex flex-col min-w-0"><span class="font-label-md text-label-md text-on-surface font-semibold truncate">Ing. Carlos V.</span><span class="inline-flex items-center px-1.5 py-0.5 rounded-full text-[10px] font-semibold bg-secondary-fixed text-on-secondary-fixed w-fit mt-0.5">Admin Nacional</span></div></div><button class="p-1 text-on-surface-variant hover:text-error hover:bg-surface-container-high rounded-lg transition-colors" title="Cerrar sesión" type="button"><span class="material-symbols-outlined text-[18px]">logout</span></button></div></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_6px_rgba(23,50,108,0.04)] z-40 flex items-center justify-between px-space-lg"><div class="flex items-center gap-space-lg flex-1 max-w-xl"><div class="relative w-full max-w-md"><span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span><input class="w-full h-9 pl-9 pr-16 bg-surface-container-low text-on-surface placeholder-outline font-body-sm text-body-sm rounded-lg border-0 focus:outline-none focus:ring-2 focus:ring-secondary transition-all" placeholder="Buscar activo, serie INV/CPU, custodio..." type="text"><div class="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-surface-container-highest text-outline font-code-asset text-[10px] font-semibold tracking-wider"><span class="">⌘K</span></div></div><div class="relative"><select class="h-9 pl-3 pr-8 bg-surface-container-low text-on-surface font-label-sm text-label-sm font-semibold rounded-lg border-0 focus:outline-none focus:ring-2 focus:ring-secondary appearance-none cursor-pointer"><option value="todas">Todas las Sedes</option><option value="quito">Matriz Quito</option><option value="guayaquil">Matriz Guayaquil</option><option value="cuenca">Central Cuenca</option></select><span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-outline text-[16px] pointer-events-none">expand_more</span></div></div><div class="flex items-center gap-space-md"><button class="h-9 px-space-md bg-secondary hover:bg-on-secondary-fixed-variant text-on-secondary font-label-sm text-label-sm font-semibold rounded-lg flex items-center gap-1.5 shadow-[0_1px_3px_rgba(0,101,141,0.2)] transition-all" type="button"><span class="material-symbols-outlined text-[18px]">add_circle</span><span class="">Nuevo Registro</span></button><div class="h-6 w-px bg-surface-container-highest"></div><button aria-label="Notificaciones TI" class="relative p-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low rounded-lg transition-colors" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-1.5 right-1.5 w-4 h-4 bg-error text-on-error font-code-asset text-[10px] font-bold rounded-full flex items-center justify-center leading-none">3</span></button><div class="flex items-center gap-2 pl-space-xs"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-2 ring-surface-container-highest" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxK_QkMrsZnBHp8XkkvA8D7i3q1zTQ9klW0-vkWuuQttAuh3mwGMWFzJE6DenhCpsbtW2ZHyu7ZW5nA-I-6exh1TN2YdzDA5_nL0UEbDQjcx6T7POkDDU4TtF2_oMQz3zj5VX0VpitTmABSxFrHMQsfCpW4TFlToV-wNrUssIP4hz5wXn0t06jFRQ1hNCHtrx2lac9tjW9uI4gRRo_ot6Fz5txDdK3FsBKT-mI_g"><div class="hidden xl:flex flex-col text-left"><span class="font-label-sm text-label-sm text-on-surface font-semibold leading-none">Carlos Vega</span><span class="font-body-sm text-[11px] text-outline leading-tight mt-0.5">Admin Matriz</span></div></div></div></header><main class="w-full pt-16 px-space-margin bg-surface"><div class="flex flex-col w-full">
+<!-- BREADCRUMBS & TOP BAR -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md mb-space-lg">
+<div class="flex flex-col">
+<nav aria-label="Breadcrumb" class="flex items-center gap-1.5 text-label-sm font-label-sm text-outline mb-1">
+<a class="hover:text-primary transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[16px]">home</span>
+<span class="">Inicio</span>
+</a>
+<span class="text-outline-variant font-semibold">/</span>
+<span class="text-secondary font-semibold">Inventario Nacional</span>
+</nav>
+<h1 class="text-headline-lg font-headline-lg text-primary tracking-tight font-bold">
+        Inventario Nacional de Activos TI
+      </h1>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">
+        Gestión centralizada del parque tecnológico y biomédico en matrices, bodegas y centrales médicas de Ecuador
+      </p>
+</div>
+<!-- PRIMARY ACTION BUTTONS -->
+<div class="flex flex-wrap items-center gap-space-sm shrink-0">
+<!-- QR Scanner Launch Button (Vibrant Cyan CTA) -->
+<button class="h-10 px-4 bg-secondary-container hover:bg-secondary text-primary font-label-md font-bold rounded-lg flex items-center gap-2 shadow-sm transition-all hover:text-on-secondary" id="open-qr-scanner-btn" onclick="const panel = document.getElementById('qr-scanner-panel'); if (panel) { panel.classList.toggle('hidden'); panel.scrollIntoView({ behavior: 'smooth' }); }" type="button">
+<span class="material-symbols-outlined text-[20px]">qr_code_scanner</span>
+<span class="">Escanear QR Activo</span>
+</button>
+<!-- Secondary Action: Export -->
+<button class="h-10 px-3.5 bg-surface-container-lowest hover:bg-surface-container-low text-on-surface font-label-md font-medium rounded-lg flex items-center gap-1.5 shadow-sm transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px] text-outline">file_download</span>
+<span class="">Exportar</span>
+</button>
+<!-- Secondary Action: Bulk Upload -->
+<button class="h-10 px-3.5 bg-surface-container-lowest hover:bg-surface-container-low text-on-surface font-label-md font-medium rounded-lg flex items-center gap-1.5 shadow-sm transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px] text-outline">upload_file</span>
+<span class="">Carga CSV</span>
+</button>
+<!-- Primary Corporate Button: Register Asset -->
+<button class="h-10 px-4 bg-primary-container hover:bg-primary text-on-primary font-label-md font-semibold rounded-lg flex items-center gap-2 shadow-sm transition-all" type="button">
+<span class="material-symbols-outlined text-[19px]">add_box</span>
+<span class="">+ Registrar Nuevo Activo</span>
+</button>
+</div>
+</div>
+<!-- KPI SUMMARY ROW -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-space-md mb-space-lg">
+<div class="p-space-md bg-surface-container-lowest rounded-xl shadow-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-label-sm font-label-sm text-outline uppercase tracking-wider font-semibold">Total Parque Activo</span>
+<span class="text-headline-lg font-headline-lg text-primary font-bold mt-1">3,428</span>
+<span class="text-body-sm font-body-sm text-secondary flex items-center gap-1 mt-0.5 font-medium">
+<span class="material-symbols-outlined text-[14px]">domain</span> 6 Sedes activas
+        </span>
+</div>
+<div class="w-11 h-11 rounded-lg bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[24px]">inventory</span>
+</div>
+</div>
+<div class="p-space-md bg-surface-container-lowest rounded-xl shadow-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-label-sm font-label-sm text-outline uppercase tracking-wider font-semibold">Operativos Verificados</span>
+<span class="text-headline-lg font-headline-lg text-on-surface font-bold mt-1">3,190</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5 font-medium">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> 93.1% disponibilidad
+        </span>
+</div>
+<div class="w-11 h-11 rounded-lg bg-surface-container-low flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[24px]">verified</span>
+</div>
+</div>
+<div class="p-space-md bg-surface-container-lowest rounded-xl shadow-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-label-sm font-label-sm text-outline uppercase tracking-wider font-semibold">En Traslado / Tránsito</span>
+<span class="text-headline-lg font-headline-lg text-primary-container font-bold mt-1">42</span>
+<span class="text-body-sm font-body-sm text-secondary flex items-center gap-1 mt-0.5 font-medium">
+<span class="material-symbols-outlined text-[14px]">local_shipping</span> 8 guías en ruta
+        </span>
+</div>
+<div class="w-11 h-11 rounded-lg bg-surface-container-low flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[24px]">swap_horizontal_circle</span>
+</div>
+</div>
+<div class="p-space-md bg-surface-container-lowest rounded-xl shadow-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-label-sm font-label-sm text-outline uppercase tracking-wider font-semibold">Atención / Mantenimiento</span>
+<span class="text-headline-lg font-headline-lg text-error font-bold mt-1">196</span>
+<span class="text-body-sm font-body-sm text-error flex items-center gap-1 mt-0.5 font-medium">
+<span class="material-symbols-outlined text-[14px]">warning</span> 14 requieren peritaje
+        </span>
+</div>
+<div class="w-11 h-11 rounded-lg bg-error-container flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-[24px]">build_circle</span>
+</div>
+</div>
+</div>
+<!-- MULTI-CRITERIA ADVANCED FILTER BAR -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-space-md mb-space-md flex flex-col gap-space-md">
+<!-- Row 1: Omnibox Smart Search and Primary Dropdowns -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-sm items-center">
+<!-- Omnibox Search -->
+<div class="lg:col-span-5 relative">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline text-[20px]">manage_search</span>
+<input class="w-full h-11 pl-11 pr-24 bg-surface-container-low text-on-surface placeholder:text-outline font-body-md text-body-md rounded-lg focus:outline-none focus:bg-surface-container-lowest transition-all" id="asset-search-input" placeholder="Búsqueda inteligente: INV-004120, CPU-001240, Serie Dell, Custodio..." type="text">
+<div class="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1 text-[11px] font-code-asset font-semibold bg-surface-container-highest px-2 py-0.5 rounded text-on-surface-variant">
+<span class="">⌘</span><span class="">F</span>
+</div>
+</div>
+<!-- Sede Dropdown -->
+<div class="lg:col-span-3 relative">
+<select class="w-full h-11 pl-3.5 pr-9 bg-surface-container-low text-on-surface font-label-md text-label-md font-medium rounded-lg appearance-none cursor-pointer focus:outline-none focus:bg-surface-container-lowest transition-all">
+<option value="todas">Todas las Jurisdicciones / Sedes</option>
+<option value="uio-bodega">Matriz Quito • Bodega Central TI</option>
+<option value="gye-bodega">Matriz Guayaquil • Bodega Costa</option>
+<option value="cue-central">Central Médica Cuenca</option>
+<option value="gye-urdesa">Central Médica Urdesa</option>
+<option value="man-central">Central Manta</option>
+<option value="gye-kennedy">Central Kennedy</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[18px]">expand_more</span>
+</div>
+<!-- Categoria Dropdown -->
+<div class="lg:col-span-2 relative">
+<select class="w-full h-11 pl-3.5 pr-9 bg-surface-container-low text-on-surface font-label-md text-label-md font-medium rounded-lg appearance-none cursor-pointer focus:outline-none focus:bg-surface-container-lowest transition-all">
+<option value="todas">Todas las Categorías</option>
+<option value="computo">Cómputo Clínico</option>
+<option value="redes">Servidores &amp; Redes</option>
+<option value="biomedico">Equipamiento Biomédico TI</option>
+<option value="impresion">Impresión &amp; Diagnóstico</option>
+<option value="telefonia">Telefonía IP</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[18px]">expand_more</span>
+</div>
+<!-- Estado Operativo Dropdown -->
+<div class="lg:col-span-2 relative">
+<select class="w-full h-11 pl-3.5 pr-9 bg-surface-container-low text-on-surface font-label-md text-label-md font-medium rounded-lg appearance-none cursor-pointer focus:outline-none focus:bg-surface-container-lowest transition-all">
+<option value="todos">Todos los Estados</option>
+<option value="operativo">Operativo (🟢)</option>
+<option value="traslado">En Traslado (🟡)</option>
+<option value="mantenimiento">En Mantenimiento (🔵)</option>
+<option value="danado">Dañado / Peritaje (🔴)</option>
+<option value="baja">Baja Técnica Oficial</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[18px]">expand_more</span>
+</div>
+</div>
+<!-- Row 2: Quick Filter Chips & Results Count Bar -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm pt-2">
+<!-- Quick Chips -->
+<div class="flex flex-wrap items-center gap-1.5">
+<span class="text-label-sm font-label-sm text-outline font-semibold uppercase tracking-wider mr-1">Filtros Rápidos:</span>
+<button class="px-3 py-1 rounded-full text-label-sm font-label-sm font-medium bg-surface-container-low text-on-surface hover:bg-surface-container-highest transition-colors flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[15px] text-error">assignment_late</span>
+<span class="">Faltan Actas de Custodia</span>
+</button>
+<button class="px-3 py-1 rounded-full text-label-sm font-label-sm font-medium bg-surface-container-low text-on-surface hover:bg-surface-container-highest transition-colors flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[15px] text-secondary">verified_user</span>
+<span class="">Garantía Próxima a Vencer (&lt;60d)</span>
+</button>
+<button class="px-3 py-1 rounded-full text-label-sm font-label-sm font-medium bg-error-container text-on-error-container hover:bg-error/20 transition-colors flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[15px]">photo_camera</span>
+<span class="">Requiere Peritaje Fotográfico (14)</span>
+</button>
+<button class="px-3 py-1 rounded-full text-label-sm font-label-sm font-medium bg-surface-container-low text-on-surface hover:bg-surface-container-highest transition-colors flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[15px] text-outline">location_off</span>
+<span class="">Equipos en Cuenca (Sin Bodega Propia)</span>
+</button>
+</div>
+<!-- Counter and Reset Trigger -->
+<div class="flex items-center gap-space-sm text-label-sm font-label-sm"><div class="relative inline-flex items-center mr-2"><button type="button" class="h-8 px-2.5 bg-surface-container-low hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm font-medium rounded-lg inline-flex items-center gap-1.5 transition-colors border border-outline-variant/40 shadow-sm"><span class="material-symbols-outlined text-[16px] text-primary">view_column</span><span class="">Columnas</span><span class="px-1.5 py-0.2 rounded-full text-[10px] bg-primary text-on-primary font-bold">7/7</span><span class="material-symbols-outlined text-[16px] text-outline">arrow_drop_down</span></button></div>
+<span class="text-on-surface-variant font-medium">
+          Mostrando <strong class="text-primary font-bold">128</strong> de 3,428 activos registrados
+        </span>
+<button class="text-secondary hover:text-primary font-semibold flex items-center gap-0.5 transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">filter_alt_off</span>
+<span class="">Limpiar Filtros</span>
+</button>
+</div>
+</div>
+</div>
+<!-- MAIN DATA TABLE CONTAINER -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden mb-space-md">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<!-- Table Header -->
+<thead class="bg-surface-container-low text-label-sm font-label-sm text-outline uppercase tracking-wider select-none"><tr><th class="py-3 px-3.5 w-10 text-center"><input class="w-4 h-4 rounded text-secondary focus:ring-0 cursor-pointer accent-secondary" id="select-all-checkbox" type="checkbox"></th><th class="py-3 px-3.5 font-semibold text-primary">Código Global</th><th class="py-3 px-3.5 font-semibold text-primary">Código Persistente</th><th class="py-3 px-3.5 font-semibold text-primary">Equipo y Especificación</th><th class="py-3 px-3.5 font-semibold text-primary">Sede / Bodega / Ubicación</th><th class="py-3 px-3.5 font-semibold text-primary">Custodio Actual</th><th class="py-3 px-3.5 font-semibold text-primary">Estado Operativo &amp; Acta</th><th class="py-3 px-3.5 font-semibold text-primary text-right pr-4">Acciones</th></tr></thead>
+<!-- Table Body -->
+<tbody class="divide-y divide-surface-container text-body-md font-body-md text-on-surface"><tr class="hover:bg-surface-container-low/70 transition-colors group"><td class="py-3.5 px-3.5 text-center"><input checked="" class="asset-checkbox w-4 h-4 rounded text-secondary focus:ring-0 cursor-pointer accent-secondary" type="checkbox"></td><td class="py-3.5 px-3.5"><span class="font-code-asset text-code-asset px-2 py-0.5 rounded bg-primary-container text-on-primary font-bold inline-block">INV-004120</span></td><td class="py-3.5 px-3.5"><span class="font-code-asset text-code-asset px-2 py-0.5 rounded bg-surface-container-highest text-primary font-semibold inline-block">MON-000843</span></td><td class="py-3.5 px-3.5"><span class="font-label-md font-semibold text-on-surface">Monitor Eizo RadiForce MX270W</span></td><td class="py-3.5 px-3.5"><div class="flex flex-col"><span class="font-label-md font-medium text-on-surface flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-secondary">location_on</span><span class="">Central Kennedy</span></span><span class="text-body-sm font-body-sm text-outline pl-5">Sala Rayos X • Estación 02</span></div></td><td class="py-3.5 px-3.5"><div class="flex items-center gap-2"><div class="w-7 h-7 rounded-full bg-secondary-fixed text-on-secondary-fixed font-bold text-label-sm flex items-center justify-center shrink-0">FM</div><div class="flex flex-col min-w-0"><span class="font-label-md font-medium text-on-surface truncate">Dr. Fabián Morales</span><span class="text-body-sm font-body-sm text-outline">Jefe Imagenología</span></div></div></td><td class="py-3.5 px-3.5"><div class="flex flex-col gap-1 items-start"><span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-label-sm font-semibold bg-surface-container-high text-primary"><span class="w-2 h-2 rounded-full bg-secondary"></span><span class="">Operativo</span></span><span class="inline-flex items-center gap-1 text-[11px] text-secondary font-medium pl-1"><span class="material-symbols-outlined text-[13px]">verified</span> Acta ACT-2024-1184 Firmada</span></div></td><td class="py-3.5 px-3.5 text-right pr-4"><button class="h-8 px-2.5 bg-surface-container-low hover:bg-surface-container-highest text-primary font-label-sm font-semibold rounded-lg inline-flex items-center gap-1 transition-colors" title="Ver Ficha Técnica del Activo" type="button"><span class="material-symbols-outlined text-[16px]">visibility</span><span class="">Ver detalle</span></button></td></tr><tr class="hover:bg-surface-container-low/70 transition-colors group"><td class="py-3.5 px-3.5 text-center"><input checked="" class="asset-checkbox w-4 h-4 rounded text-secondary focus:ring-0 cursor-pointer accent-secondary" type="checkbox"></td><td class="py-3.5 px-3.5"><span class="font-code-asset text-code-asset px-2 py-0.5 rounded bg-primary-container text-on-primary font-bold inline-block">INV-002891</span></td><td class="py-3.5 px-3.5"><span class="font-code-asset text-code-asset px-2 py-0.5 rounded bg-surface-container-highest text-primary font-semibold inline-block">CPU-001240</span></td><td class="py-3.5 px-3.5"><span class="font-label-md font-semibold text-on-surface">Dell Precision 3660 Tower</span></td><td class="py-3.5 px-3.5"><div class="flex flex-col"><span class="font-label-md font-medium text-on-surface flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-secondary">location_on</span><span class="">Matriz Quito</span></span><span class="text-body-sm font-body-sm text-outline pl-5">Piso 2 • Sistemas y Servidores</span></div></td><td class="py-3.5 px-3.5"><div class="flex items-center gap-2"><div class="w-7 h-7 rounded-full bg-primary-container text-on-primary font-bold text-label-sm flex items-center justify-center shrink-0">GO</div><div class="flex flex-col min-w-0"><span class="font-label-md font-medium text-on-surface truncate">Ing. Gabriel Ortiz</span><span class="text-body-sm font-body-sm text-outline">TI Matriz</span></div></div></td><td class="py-3.5 px-3.5"><div class="flex flex-col gap-1 items-start"><span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-label-sm font-semibold bg-surface-container-high text-primary"><span class="w-2 h-2 rounded-full bg-secondary"></span><span class="">Operativo</span></span><span class="inline-flex items-center gap-1 text-[11px] text-secondary font-medium pl-1"><span class="material-symbols-outlined text-[13px]">verified</span> Acta ACT-2024-0992 Firmada</span></div></td><td class="py-3.5 px-3.5 text-right pr-4"><button class="h-8 px-2.5 bg-surface-container-low hover:bg-surface-container-highest text-primary font-label-sm font-semibold rounded-lg inline-flex items-center gap-1 transition-colors" title="Ver Ficha Técnica del Activo" type="button"><span class="material-symbols-outlined text-[16px]">visibility</span><span class="">Ver detalle</span></button></td></tr><tr class="hover:bg-surface-container-low/70 transition-colors group"><td class="py-3.5 px-3.5 text-center"><input checked="" class="asset-checkbox w-4 h-4 rounded text-secondary focus:ring-0 cursor-pointer accent-secondary" type="checkbox"></td><td class="py-3.5 px-3.5"><span class="font-code-asset text-code-asset px-2 py-0.5 rounded bg-primary-container text-on-primary font-bold inline-block">INV-001840</span></td><td class="py-3.5 px-3.5"><span class="font-code-asset text-code-asset px-2 py-0.5 rounded bg-surface-container-highest text-primary font-semibold inline-block">SRV-000042</span></td><td class="py-3.5 px-3.5"><span class="font-label-md font-semibold text-on-surface">Servidor Dell PowerEdge R340</span></td><td class="py-3.5 px-3.5"><div class="flex flex-col"><span class="font-label-md font-medium text-primary-container flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">local_shipping</span><span class="">En Ruta UIO ➔ GYE</span></span><span class="text-body-sm font-body-sm text-outline pl-5">Guía Courier: #TR-2024-089</span></div></td><td class="py-3.5 px-3.5"><div class="flex items-center gap-2"><div class="w-7 h-7 rounded-full bg-surface-container-highest text-on-surface font-bold text-label-sm flex items-center justify-center shrink-0">LP</div><div class="flex flex-col min-w-0"><span class="font-label-md font-medium text-on-surface truncate">Téc. Leonardo Paredes</span><span class="text-body-sm font-body-sm text-outline">Soporte Despliegue</span></div></div></td><td class="py-3.5 px-3.5"><div class="flex flex-col gap-1 items-start"><span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-label-sm font-semibold bg-surface-container-high text-primary-container"><span class="material-symbols-outlined text-[13px]">swap_horiz</span><span class="">En Traslado (#TR-2024-089)</span></span><span class="inline-flex items-center gap-1 text-[11px] text-outline font-medium pl-1"><span class="">Recepción pendiente en Bodega Costa</span></span></div></td><td class="py-3.5 px-3.5 text-right pr-4"><button class="h-8 px-2.5 bg-surface-container-low hover:bg-surface-container-highest text-primary font-label-sm font-semibold rounded-lg inline-flex items-center gap-1 transition-colors" title="Ver Ficha Técnica del Activo" type="button"><span class="material-symbols-outlined text-[16px]">visibility</span><span class="">Ver detalle</span></button></td></tr><tr class="hover:bg-surface-container-low/70 transition-colors group"><td class="py-3.5 px-3.5 text-center"><input class="asset-checkbox w-4 h-4 rounded text-secondary focus:ring-0 cursor-pointer accent-secondary" type="checkbox"></td><td class="py-3.5 px-3.5"><span class="font-code-asset text-code-asset px-2 py-0.5 rounded bg-primary-container text-on-primary font-bold inline-block">INV-005612</span></td><td class="py-3.5 px-3.5"><span class="font-code-asset text-code-asset px-2 py-0.5 rounded bg-surface-container-highest text-primary font-semibold inline-block">BIO-000189</span></td><td class="py-3.5 px-3.5"><span class="font-label-md font-semibold text-on-surface">Electrocardiógrafo Schiller Cardiovit AT-102</span></td><td class="py-3.5 px-3.5"><div class="flex flex-col"><span class="font-label-md font-medium text-on-surface flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-secondary">location_on</span><span class="">Central Cuenca</span></span><span class="text-body-sm font-body-sm text-outline pl-5">Consultorio 14 • Cardiología</span></div></td><td class="py-3.5 px-3.5"><div class="flex items-center gap-2"><div class="w-7 h-7 rounded-full bg-secondary-fixed text-on-secondary-fixed font-bold text-label-sm flex items-center justify-center shrink-0">SA</div><div class="flex flex-col min-w-0"><span class="font-label-md font-medium text-on-surface truncate">Dra. Sofía Alarcón</span><span class="text-body-sm font-body-sm text-outline">Cardiología Clínica</span></div></div></td><td class="py-3.5 px-3.5"><div class="flex flex-col gap-1 items-start"><span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-label-sm font-semibold bg-error-container text-on-error-container"><span class="w-2 h-2 rounded-full bg-error"></span><span class="">Dañado - Requiere Peritaje</span></span><span class="inline-flex items-center gap-1 text-[11px] text-error font-medium pl-1"><span class="material-symbols-outlined text-[13px]">report</span> Falla placa fuente 220V</span></div></td><td class="py-3.5 px-3.5 text-right pr-4"><button class="h-8 px-2.5 bg-surface-container-low hover:bg-surface-container-highest text-primary font-label-sm font-semibold rounded-lg inline-flex items-center gap-1 transition-colors" title="Ver Ficha Técnica del Activo" type="button"><span class="material-symbols-outlined text-[16px]">visibility</span><span class="">Ver detalle</span></button></td></tr><tr class="hover:bg-surface-container-low/70 transition-colors group"><td class="py-3.5 px-3.5 text-center"><input class="asset-checkbox w-4 h-4 rounded text-secondary focus:ring-0 cursor-pointer accent-secondary" type="checkbox"></td><td class="py-3.5 px-3.5"><span class="font-code-asset text-code-asset px-2 py-0.5 rounded bg-primary-container text-on-primary font-bold inline-block">INV-001095</span></td><td class="py-3.5 px-3.5"><span class="font-code-asset text-code-asset px-2 py-0.5 rounded bg-surface-container-highest text-primary font-semibold inline-block">UPS-000084</span></td><td class="py-3.5 px-3.5"><span class="font-label-md font-semibold text-on-surface">UPS APC Smart-UPS 3000VA</span></td><td class="py-3.5 px-3.5"><div class="flex flex-col"><span class="font-label-md font-medium text-on-surface flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-outline">domain_disabled</span><span class="">Bodega Central TI</span></span><span class="text-body-sm font-body-sm text-outline pl-5">Área de Desecho / Custodia Legal</span></div></td><td class="py-3.5 px-3.5"><div class="flex items-center gap-2"><div class="w-7 h-7 rounded-full bg-surface-container-high text-on-surface-variant font-bold text-label-sm flex items-center justify-center shrink-0">CT</div><div class="flex flex-col min-w-0"><span class="font-label-md font-medium text-on-surface truncate">Comité Técnico TI</span><span class="text-body-sm font-body-sm text-outline">Contraloría Interna</span></div></div></td><td class="py-3.5 px-3.5"><div class="flex flex-col gap-1 items-start"><span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-label-sm font-semibold bg-surface-container-high text-on-surface-variant"><span class="w-2 h-2 rounded-full bg-outline"></span><span class="">De Baja</span></span><span class="inline-flex items-center gap-1 text-[11px] text-error font-medium pl-1"><span class="material-symbols-outlined text-[13px]">assignment_turned_in</span> Acta #ACT-2025-07372 Oficial</span></div></td><td class="py-3.5 px-3.5 text-right pr-4"><button class="h-8 px-2.5 bg-surface-container-low hover:bg-surface-container-highest text-primary font-label-sm font-semibold rounded-lg inline-flex items-center gap-1 transition-colors" title="Ver Ficha Técnica del Activo" type="button"><span class="material-symbols-outlined text-[16px]">visibility</span><span class="">Ver detalle</span></button></td></tr><tr class="hover:bg-surface-container-low/70 transition-colors group"><td class="py-3.5 px-3.5 text-center"><input class="asset-checkbox w-4 h-4 rounded text-secondary focus:ring-0 cursor-pointer accent-secondary" type="checkbox"></td><td class="py-3.5 px-3.5"><span class="font-code-asset text-code-asset px-2 py-0.5 rounded bg-primary-container text-on-primary font-bold inline-block">INV-000918</span></td><td class="py-3.5 px-3.5"><span class="font-code-asset text-code-asset px-2 py-0.5 rounded bg-surface-container-highest text-primary font-semibold inline-block">LAP-002105</span></td><td class="py-3.5 px-3.5"><span class="font-label-md font-semibold text-on-surface">Laptop Dell Latitude 5430</span></td><td class="py-3.5 px-3.5"><div class="flex flex-col"><span class="font-label-md font-medium text-on-surface flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-secondary">location_on</span><span class="">Central Urdesa</span></span><span class="text-body-sm font-body-sm text-outline pl-5">Laboratorio Clínico • Toma de Muestras</span></div></td><td class="py-3.5 px-3.5"><div class="flex items-center gap-2"><div class="w-7 h-7 rounded-full bg-surface-container-highest text-on-surface font-bold text-label-sm flex items-center justify-center shrink-0">MQ</div><div class="flex flex-col min-w-0"><span class="font-label-md font-medium text-on-surface truncate">Lcda. Mariana Quevedo</span><span class="text-body-sm font-body-sm text-outline">Jefa Laboratorio</span></div></div></td><td class="py-3.5 px-3.5"><div class="flex flex-col gap-1 items-start"><span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-label-sm font-semibold bg-surface-container-high text-primary"><span class="w-2 h-2 rounded-full bg-secondary"></span><span class="">Operativo</span></span><span class="inline-flex items-center gap-1 text-[11px] text-secondary font-medium pl-1"><span class="material-symbols-outlined text-[13px]">verified</span> Acta ACT-2024-0512 Firmada</span></div></td><td class="py-3.5 px-3.5 text-right pr-4"><button class="h-8 px-2.5 bg-surface-container-low hover:bg-surface-container-highest text-primary font-label-sm font-semibold rounded-lg inline-flex items-center gap-1 transition-colors" title="Ver Ficha Técnica del Activo" type="button"><span class="material-symbols-outlined text-[16px]">visibility</span><span class="">Ver detalle</span></button></td></tr></tbody>
+</table>
+</div>
+<!-- TABLE FOOTER WITH PAGINATION -->
+<div class="p-space-md bg-surface-container-low/50 flex flex-col md:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-2">
+<span class="text-label-sm font-label-sm text-outline">Filas por página:</span>
+<select class="h-8 px-2 bg-surface-container-lowest text-on-surface font-label-sm text-label-sm rounded focus:outline-none cursor-pointer">
+<option selected="">15</option>
+<option>25</option>
+<option>50</option>
+<option>100</option>
+</select>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant font-medium">
+          Mostrando 1 - 6 de 128 resultados
+        </span>
+</div>
+<!-- Pagination Buttons -->
+<nav aria-label="Paginación de tabla" class="flex items-center gap-1 select-none">
+<button class="h-8 px-3 rounded text-label-sm font-label-sm text-outline-variant bg-surface-container-low cursor-not-allowed flex items-center gap-1" disabled="" type="button">
+<span class="material-symbols-outlined text-[16px]">chevron_left</span>
+<span class="">Anterior</span>
+</button>
+<button class="h-8 w-8 rounded text-label-sm font-label-sm font-bold bg-primary-container text-on-primary shadow-sm flex items-center justify-center" type="button">
+          1
+        </button>
+<button class="h-8 w-8 rounded text-label-sm font-label-sm font-medium hover:bg-surface-container-high text-on-surface flex items-center justify-center transition-colors" type="button">
+          2
+        </button>
+<button class="h-8 w-8 rounded text-label-sm font-label-sm font-medium hover:bg-surface-container-high text-on-surface flex items-center justify-center transition-colors" type="button">
+          3
+        </button>
+<button class="h-8 w-8 rounded text-label-sm font-label-sm font-medium hover:bg-surface-container-high text-on-surface flex items-center justify-center transition-colors" type="button">
+          4
+        </button>
+<span class="px-1 text-outline font-bold">...</span>
+<button class="h-8 w-8 rounded text-label-sm font-label-sm font-medium hover:bg-surface-container-high text-on-surface flex items-center justify-center transition-colors" type="button">
+          27
+        </button>
+<button class="h-8 px-3 rounded text-label-sm font-label-sm text-on-surface bg-surface-container-lowest hover:bg-surface-container-low flex items-center gap-1 shadow-sm transition-colors" type="button">
+<span class="">Siguiente</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</nav>
+</div>
+</div>
+<!-- BATCH ACTIONS FLOATING DOCK (STICKY BOTTOM WHEN ASSETS ARE SELECTED) -->
+<div class="sticky bottom-4 z-30 w-full max-w-4xl mx-auto bg-primary-container text-on-primary rounded-xl p-space-md shadow-xl flex flex-col sm:flex-row items-center justify-between gap-space-md" id="bulk-action-bar">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary text-on-secondary font-bold text-label-sm flex items-center justify-center shrink-0">
+<span class="" id="selected-assets-count">3</span>
+</div>
+<div class="flex flex-col">
+<span class="text-label-md font-label-md font-semibold text-on-primary">Activos Seleccionados en Matriz/Sedes</span>
+<span class="text-body-sm font-body-sm text-on-primary-container">Listos para traslado intersede, reimpresión o acta múltiple</span>
+</div>
+</div>
+<div class="flex items-center gap-2 flex-wrap">
+<button class="h-9 px-3.5 bg-secondary hover:bg-secondary/90 text-on-secondary font-label-sm font-semibold rounded-lg flex items-center gap-1.5 shadow-sm transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]">local_shipping</span>
+<span class="">Iniciar Traslado Grupal</span>
+</button>
+<button class="h-9 px-3.5 bg-surface-container-lowest/15 hover:bg-surface-container-lowest/25 text-on-primary font-label-sm font-medium rounded-lg flex items-center gap-1.5 transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">print</span>
+<span class="">Reimprimir Códigos QR</span>
+</button>
+<button class="h-9 px-3.5 bg-surface-container-lowest/15 hover:bg-surface-container-lowest/25 text-on-primary font-label-sm font-medium rounded-lg flex items-center gap-1.5 transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">assignment_turned_in</span>
+<span class="">Generar Acta Masiva</span>
+</button>
+<button class="p-2 text-on-primary-container hover:text-on-primary rounded transition-colors" id="clear-selection-btn" title="Deseleccionar todos" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+</div>
+<!-- INTERACTIVE QR SCANNER DRAWER / MODAL OVERLAY -->
+<!-- LIGHTWEIGHT INTERACTIVITY LOGIC -->
+<script>
+    (function initAssetInventory() {
+      // Elements
+      const scannerModal = document.getElementById('qr-scanner-modal');
+      const openScannerBtn = document.getElementById('open-qr-scanner-btn');
+      const closeScannerBtn = document.getElementById('close-qr-scanner-btn');
+      const minimizeScannerBtn = document.getElementById('minimize-qr-scanner-btn');
+      
+      const selectAllCheckbox = document.getElementById('select-all-checkbox');
+      const assetCheckboxes = document.querySelectorAll('.asset-checkbox');
+      const bulkActionBar = document.getElementById('bulk-action-bar');
+      const selectedCountSpan = document.getElementById('selected-assets-count');
+      const clearSelectionBtn = document.getElementById('clear-selection-btn');
+
+      // Modal open/close handlers
+      function openScanner() {
+        if (scannerModal) scannerModal.classList.remove('hidden');
+      }
+      function closeScanner() {
+        if (scannerModal) scannerModal.classList.add('hidden');
+      }
+
+      if (openScannerBtn) openScannerBtn.addEventListener('click', openScanner);
+      if (closeScannerBtn) closeScannerBtn.addEventListener('click', closeScanner);
+      if (minimizeScannerBtn) minimizeScannerBtn.addEventListener('click', closeScanner);
+
+      // Checkbox multi-selection and bulk action floating dock update
+      function updateBulkBar() {
+        let count = 0;
+        assetCheckboxes.forEach(cb => {
+          if (cb.checked) count++;
+        });
+
+        if (selectedCountSpan) selectedCountSpan.textContent = count;
+
+        if (count > 0) {
+          if (bulkActionBar) bulkActionBar.classList.remove('hidden');
+        } else {
+          if (bulkActionBar) bulkActionBar.classList.add('hidden');
+        }
+
+        if (selectAllCheckbox) {
+          selectAllCheckbox.checked = (count === assetCheckboxes.length && count > 0);
+          selectAllCheckbox.indeterminate = (count > 0 && count < assetCheckboxes.length);
+        }
+      }
+
+      if (selectAllCheckbox) {
+        selectAllCheckbox.addEventListener('change', function () {
+          const isChecked = this.checked;
+          assetCheckboxes.forEach(cb => {
+            cb.checked = isChecked;
+          });
+          updateBulkBar();
+        });
+      }
+
+      assetCheckboxes.forEach(cb => {
+        cb.addEventListener('change', updateBulkBar);
+      });
+
+      if (clearSelectionBtn) {
+        clearSelectionBtn.addEventListener('click', function () {
+          assetCheckboxes.forEach(cb => {
+            cb.checked = false;
+          });
+          if (selectAllCheckbox) {
+            selectAllCheckbox.checked = false;
+            selectAllCheckbox.indeterminate = false;
+          }
+          updateBulkBar();
+        });
+      }
+
+      // Initial state sync
+      updateBulkBar();
+    })();
+  </script>
+</div></main></div>
+
+
+</body></html>

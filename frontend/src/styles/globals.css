@@ -5,20 +5,69 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
+  --color-card-foreground: var(--foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--foreground);
   --color-border: var(--border);
-  --color-input: var(--border);
-  --color-ring: var(--primary);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
   --color-destructive: var(--destructive);
   --radius-md: 0.5rem;
-  --radius-xl: 1rem;
+  --radius-xl: 0.75rem;
 }
 
 @theme {
+  /* Clinical IT Asset Infrastructure palette */
+  --color-surface: #faf8ff;
+  --color-surface-dim: #d2d9f4;
+  --color-surface-bright: #faf8ff;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f2f3ff;
+  --color-surface-container: #eaedff;
+  --color-surface-container-high: #e2e7ff;
+  --color-surface-container-highest: #dae2fd;
+  --color-surface-variant: #dae2fd;
+  --color-on-surface: #131b2e;
+  --color-on-surface-variant: #444650;
+  --color-inverse-surface: #283044;
+  --color-inverse-on-surface: #eef0ff;
+  --color-outline: #757781;
+  --color-outline-variant: #c5c6d1;
+  --color-surface-tint: #455c99;
+  --color-primary: #001c50;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #17326c;
+  --color-on-primary-container: #859cdd;
+  --color-primary-fixed: #dae2ff;
+  --color-primary-fixed-dim: #b2c5ff;
+  --color-on-primary-fixed: #001847;
+  --color-on-primary-fixed-variant: #2c447f;
+  --color-secondary: #00658d;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #41befd;
+  --color-on-secondary-container: #004b69;
+  --color-secondary-fixed: #c6e7ff;
+  --color-secondary-fixed-dim: #81cfff;
+  --color-on-secondary-fixed: #001e2d;
+  --color-on-secondary-fixed-variant: #004c6b;
+  --color-tertiary: #1a0b66;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #30277b;
+  --color-on-tertiary-container: #9a93ec;
+  --color-tertiary-fixed: #e4dfff;
+  --color-tertiary-fixed-dim: #c5c0ff;
+  --color-on-tertiary-fixed: #150362;
+  --color-on-tertiary-fixed-variant: #423b8e;
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+  --color-on-background: #131b2e;
+
+  /* Legacy brand aliases kept for the existing screens */
   --color-brand-950: #001c50;
   --color-brand-900: #11244e;
   --color-brand-800: #17326c;
@@ -30,22 +79,64 @@
   --color-ink: #131b2e;
   --color-ink-soft: #444650;
   --color-line: #e2e8f0;
+
   --font-sans: "Inter", system-ui, sans-serif;
+
+  --shadow-card: 0 1px 3px 0 rgba(23, 50, 108, 0.04), 0 1px 2px -1px rgba(23, 50, 108, 0.04);
+  --shadow-pop: 0 4px 6px -1px rgba(23, 50, 108, 0.07), 0 2px 4px -2px rgba(23, 50, 108, 0.05);
+  --shadow-sheet: 0 20px 25px -5px rgba(23, 50, 108, 0.12), 0 8px 10px -6px rgba(23, 50, 108, 0.08);
 }
 
 :root {
-  --background: #f8fafc;
+  --background: #faf8ff;
   --foreground: #131b2e;
-  --card: oklch(1 0 0);
-  --primary: #17326c;
-  --primary-foreground: oklch(1 0 0);
-  --muted-foreground: #475569;
-  --accent: #f1f5f9;
+  --card: #ffffff;
+  --primary: #001c50;
+  --primary-foreground: #ffffff;
+  --muted-foreground: #444650;
+  --accent: #f2f3ff;
   --border: #e2e8f0;
-  --destructive: oklch(0.55 0.2 25);
+  --input: #cbd5e1;
+  --ring: #00a3e0;
+  --destructive: #ba1a1a;
+  --radius-md: 0.5rem;
+  --radius-xl: 0.75rem;
 }
 
 @layer base {
   * { @apply border-border; }
-  body { @apply m-0 bg-background text-foreground antialiased; font-family: "Inter", system-ui, sans-serif; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    @apply m-0 bg-background text-foreground antialiased;
+    font-family: "Inter", system-ui, sans-serif;
+    font-feature-settings: "cv11", "ss01";
+  }
+  /* Asset codes, serials and counters use tabular figures by default. */
+  table, .tabular-nums { font-variant-numeric: tabular-nums; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+
+@layer base {
+  :focus-visible { outline: 2px solid var(--ring); outline-offset: 3px; }
+  select, button, input { scroll-margin-top: 6rem; }
+}
+
+@layer components {
+  .surface-card {
+    @apply rounded-xl border border-line bg-surface-container-lowest shadow-card;
+  }
+  .asset-code {
+    @apply inline-flex items-center rounded-[0.375rem] border border-slate-300 bg-slate-100 px-2 py-0.5 text-[0.8125rem] font-semibold tracking-[0.05em] text-slate-800 tabular-nums;
+  }
+  .metric-label {
+    @apply text-[11px] font-semibold uppercase tracking-wider text-on-surface-variant;
+  }
+  .reference-control {
+    @apply inline-flex min-h-10 items-center justify-center gap-2 rounded-lg border border-line bg-surface-container-lowest px-4 py-2 text-xs font-medium text-on-surface-variant shadow-card;
+  }
+  .reference-action { @apply border-transparent bg-secondary font-semibold text-on-secondary; }
+  .reference-control:disabled { cursor: not-allowed; }
 }

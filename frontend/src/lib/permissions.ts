@@ -27,14 +27,24 @@ export function canAccess(profile: Profile | null, permission: string, centerId?
 }
 
 export function hasAnyPermission(profile: Profile | null, permissions: string[]): boolean {
-  return !!profile?.grants.some((g) => permissions.includes(g.permission))
+  return !!profile?.grants.some((g) => g.permission !== null && permissions.includes(g.permission))
 }
 
 export const ROLE_LABELS: Record<string, string> = {
+  TECNICO: "Técnico TI",
+  CONSULTA: "Consulta",
   ADMINISTRADOR: "Administrador",
   TECNICO_TI: "Técnico TI",
   JEFATURA: "Jefatura",
   COORDINADOR: "Coordinador",
+}
+
+export function workspaceFor(profile: Profile | null) {
+  const roles = profile?.grants.map((grant) => grant.role) ?? []
+  if (roles.includes("ADMINISTRADOR")) return { kind: "admin", label: "Administración", description: "Gestione la organización y sus accesos." }
+  if (roles.some((role) => ["TECNICO", "TECNICO_TI"].includes(role)))
+    return { kind: "technical", label: "Espacio técnico", description: "Consulte sus centros y herramientas disponibles." }
+  return { kind: "consultation", label: "Espacio de consulta", description: "Revise la información disponible para su perfil." }
 }
 
 export function roleLabel(code: string): string {

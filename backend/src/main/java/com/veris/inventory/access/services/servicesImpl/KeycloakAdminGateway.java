@@ -72,10 +72,9 @@ public class KeycloakAdminGateway implements IdentityAdminGateway {
     @Override
     public Optional<ExternalUser> findByUsername(String username) {
         try {
-            var users = http.get()
-                    .uri(uri -> uri.path(adminBase + "/users")
-                            .queryParam("username", username).queryParam("exact", "true").build())
-                    .header(HttpHeaders.AUTHORIZATION, "Bearer " + token())
+            var users = get("users?username="
+                            + java.net.URLEncoder.encode(username, java.nio.charset.StandardCharsets.UTF_8)
+                            + "&exact=true")
                     .retrieve().body(new ParameterizedTypeReference<List<UserRepresentation>>() {});
             return users == null || users.isEmpty() ? Optional.empty()
                     : Optional.of(toExternal(users.getFirst()));
@@ -218,7 +217,7 @@ public class KeycloakAdminGateway implements IdentityAdminGateway {
             tokenExpiry = Instant.now().plusSeconds(Math.max(response.expiresIn() - 30, 30));
             return cachedToken;
         } catch (RestClientException failure) {
-            LOG.warn("No se pudo obtener token de servicio de Keycloak.");
+            LOG.warn("No se pudo obtener token de servicio de Keycloak: {}", failure.toString());
             throw unavailable("Proveedor de identidad no disponible.");
         }
     }
@@ -227,9 +226,12 @@ public class KeycloakAdminGateway implements IdentityAdminGateway {
         return ApiException.unavailable("IDENTITY_PROVIDER_UNAVAILABLE", detail);
     }
 
-    private record TokenResponse(String accessToken, int expiresIn) {}
+    @com.fasterxml.jackson.annotation.JsonIgnoreProperties(ignoreUnknown = true)
+    private record TokenResponse(@com.fasterxml.jackson.annotation.JsonProperty("access_token") String accessToken,
+                                 @com.fasterxml.jackson.annotation.JsonProperty("expires_in") int expiresIn) {}
 
     /** Representación mínima del usuario de Keycloak (solo campos usados). */
+    @com.fasterxml.jackson.annotation.JsonIgnoreProperties(ignoreUnknown = true)
     private record UserRepresentation(String id, String username, String email, Boolean enabled,
                                       String firstName, String lastName) {}
 

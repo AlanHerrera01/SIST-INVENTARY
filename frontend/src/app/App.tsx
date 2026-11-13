@@ -1,19 +1,22 @@
-import { useState } from "react"
+import { lazy, Suspense, useState } from "react"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { AppLayout } from "@/components/layout/AppLayout"
 import { RequireAccess } from "@/components/RequireAccess"
-import { LoadingState } from "@/components/PageState"
+import { ErrorState, LoadingState } from "@/components/PageState"
+import { WorkspaceProvider } from "@/lib/workspace"
+import { MyAccessPage } from "@/features/access/MyAccessPage"
 import { SessionProvider } from "@/lib/session"
 import { useSession } from "@/lib/session-context"
 import { DashboardPage } from "@/features/dashboard/DashboardPage"
-import { UsersPage } from "@/features/access/UsersPage"
-import { UserDetailPage } from "@/features/access/UserDetailPage"
-import { RolesPage } from "@/features/access/RolesPage"
-import { MatricesPage } from "@/features/access/MatricesPage"
+const UsersPage = lazy(() => import("@/features/access/UsersPage").then((m) => ({ default: m.UsersPage })))
+const UserDetailPage = lazy(() => import("@/features/access/UserDetailPage").then((m) => ({ default: m.UserDetailPage })))
+const RolesPage = lazy(() => import("@/features/access/RolesPage").then((m) => ({ default: m.RolesPage })))
+const MatricesPage = lazy(() => import("@/features/access/MatricesPage").then((m) => ({ default: m.MatricesPage })))
 import { MyMatricesPage } from "@/features/access/MyMatricesPage"
-import { AuditPage } from "@/features/access/AuditPage"
-import { OrganizationPage } from "@/features/organization/OrganizationPage"
+const AuditPage = lazy(() => import("@/features/access/AuditPage").then((m) => ({ default: m.AuditPage })))
+const OrganizationPage = lazy(() => import("@/features/organization/OrganizationPage").then((m) => ({ default: m.OrganizationPage })))
+const ConfiguracionPage = lazy(() => import("@/features/config/ConfiguracionPage").then((m) => ({ default: m.ConfiguracionPage })))
 import { LoginPage } from "@/features/auth/LoginPage"
 import { NotFoundPage } from "@/features/NotFoundPage"
 
@@ -26,7 +29,7 @@ function createQueryClient() {
 }
 
 function Shell() {
-  const { isLoading, requiresLogin } = useSession()
+  const { isLoading, requiresLogin, isError, error, refetch } = useSession()
   if (isLoading) {
     return (
       <div className="flex min-h-svh items-center justify-center">
@@ -34,6 +37,7 @@ function Shell() {
       </div>
     )
   }
+  if (isError) return <main className="mx-auto max-w-xl p-6"><h1 className="text-xl font-semibold">No se pudo verificar su acceso</h1><ErrorState error={error} onRetry={refetch} /></main>
   if (requiresLogin) {
     return (
       <Routes>
@@ -43,9 +47,11 @@ function Shell() {
   }
   return (
     <Routes>
-      <Route element={<AppLayout />}>
+      <Route element={<WorkspaceProvider><AppLayout /></WorkspaceProvider>}>
         <Route index element={<DashboardPage />} />
+        <Route path="mi-acceso" element={<MyAccessPage />} />
         <Route path="mis-matrices" element={<MyMatricesPage />} />
+        <Route path="configuracion" element={<ConfiguracionPage />} />
         <Route path="organization" element={<RequireAccess permission="organization.read"><OrganizationPage /></RequireAccess>} />
         <Route path="access/users" element={<RequireAccess permission="access.users.read"><UsersPage /></RequireAccess>} />
         <Route path="access/users/:id" element={<RequireAccess permission="access.users.read"><UserDetailPage /></RequireAccess>} />
@@ -64,7 +70,7 @@ export function App({ queryClient }: { queryClient?: QueryClient } = {}) {
     <QueryClientProvider client={queryClient ?? defaultClient}>
       <SessionProvider>
         <BrowserRouter>
-          <Shell />
+          <Suspense fallback={<main className="p-6"><LoadingState label="Cargando sección…" /></main>}><Shell /></Suspense>
         </BrowserRouter>
       </SessionProvider>
     </QueryClientProvider>

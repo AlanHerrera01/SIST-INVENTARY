@@ -1,108 +1,81 @@
-/**
- * Cliente HTTP de la API del backend. Same-origin a través del proxy de Vite
- * (o del ingress en producción). Los POST/PATCH/PUT/DELETE envían el token
- * CSRF de Spring Security en la cabecera que el backend declara.
- */
-
+/** Same-origin BFF client: OIDC tokens remain on the server. */
 export class ApiError extends Error {
-  constructor(
-    public readonly status: number,
-    public readonly code: string,
-    message: string,
-  ) {
+  constructor(public readonly status: number, public readonly code: string, message: string) {
     super(message)
     this.name = "ApiError"
   }
 }
-
-interface ProblemDetails {
-  status?: number
-  title?: string
-  detail?: string
-  code?: string
-}
-
-let csrfCache: { headerName: string; token: string } | null = null
-
-async function fetchCsrf(): Promise<{ headerName: string; token: string }> {
-  const response = await fetch("/api/auth/csrf", { credentials: "same-origin" })
-  if (!response.ok) throw new ApiError(response.status, "CSRF_UNAVAILABLE", "No se pudo obtener el token CSRF.")
-  csrfCache = (await response.json()) as { headerName: string; token: string }
-  return csrfCache
-}
-
+export const SESSION_EXPIRED_EVENT = "inventory:session-expired"
 export interface RequestOptions {
   method?: "GET" | "POST" | "PATCH" | "PUT" | "DELETE"
   body?: unknown
   params?: Record<string, string | number | boolean | undefined | null>
+  signal?: AbortSignal
 }
-
-export async function api<T>(path: string, options: RequestOptions = {}): Promise<T> {
-  const { method = "GET", body, params } = options
-  const query = params
-    ? "?" + new URLSearchParams(
-        Object.entries(params)
-          .filter(([, v]) => v !== undefined && v !== null && v !== "")
-          .map(([k, v]) => [k, String(v)]),
-      ).toString()
-    : ""
-
+function notifyExpired(status: number) {
+  if (status === 401) window.dispatchEvent(new Event(SESSION_EXPIRED_EVENT))
+}
+/**
+ * El contrato del backend usa snake_case para el JSON de dominio y el frontend
+ * usa camelCase. La conversión ocurre solo en el borde HTTP, de forma profunda,
+ * para que los tipos de la interfaz no dependan del formato del transporte.
+ */
+const UNSAFE_KEYS = new Set(["__proto__", "constructor", "prototype"])
+function snakeToCamel(key: string): string {
+  return key.replace(/_+([a-z0-9])/g, (_, char: string) => char.toUpperCase())
+}
+function camelToSnake(key: string): string {
+  return key.replace(/([A-Z])/g, (char) => `_${char.toLowerCase()}`)
+}
+function convertKeys(value: unknown, convert: (key: string) => string): unknown {
+  if (Array.isArray(value)) return value.map((item) => convertKeys(item, convert))
+  if (value === null || typeof value !== "object") return value
+  const result: Record<string, unknown> = {}
+  for (const [key, item] of Object.entries(value as Record<string, unknown>)) {
+    if (UNSAFE_KEYS.has(key)) continue
+    const name = convert(key)
+    if (UNSAFE_KEYS.has(name)) continue
+    result[name] = convertKeys(item, convert)
+  }
+  return result
+}
+async function request<T>(path: string, options: RequestOptions): Promise<T> {
+  const { method = "GET", body, params, signal } = options
+  const query = new URLSearchParams(Object.entries(params ?? {})
+    .filter(([, value]) => value !== undefined && value !== null && value !== "")
+    .map(([key, value]) => [key, String(value)]))
   const headers: Record<string, string> = { Accept: "application/json" }
   if (body !== undefined) headers["Content-Type"] = "application/json"
-
   if (method !== "GET") {
-    const csrf = csrfCache ?? (await fetchCsrf())
+    // Fresh masked CSRF token per command. Never replay mutations automatically.
+    const response = await fetch("/api/auth/csrf", { credentials: "same-origin", cache: "no-store", signal })
+    notifyExpired(response.status)
+    if (!response.ok) throw new ApiError(response.status, "CSRF_UNAVAILABLE", "No se pudo preparar la solicitud. Inténtelo nuevamente.")
+    const csrf: unknown = await response.json()
+    if (!csrf || typeof csrf !== "object" || !("headerName" in csrf) || !("token" in csrf)
+      || typeof csrf.headerName !== "string" || typeof csrf.token !== "string")
+      throw new ApiError(502, "INVALID_RESPONSE", "Respuesta de seguridad no válida.")
     headers[csrf.headerName] = csrf.token
   }
-
-  const response = await fetch(`/api/v1${path}${query}`, {
-    method,
-    credentials: "same-origin",
-    headers,
-    body: body === undefined ? undefined : JSON.stringify(body),
+  const response = await fetch(path + (query.size ? `?${query}` : ""), {
+    method, credentials: "same-origin", cache: "no-store", headers, signal,
+    body: body === undefined ? undefined : JSON.stringify(convertKeys(body, camelToSnake)),
   })
-
+  notifyExpired(response.status)
   if (response.status === 204) return undefined as T
-
   const text = await response.text()
-  const payload = text ? (JSON.parse(text) as ProblemDetails & T) : null
-
+  let payload: unknown = null
+  try { payload = text ? convertKeys(JSON.parse(text), snakeToCamel) : null } catch {
+    if (response.ok) throw new ApiError(502, "INVALID_RESPONSE", "El servicio devolvió una respuesta no válida.")
+  }
   if (!response.ok) {
-    if (response.status === 403 && csrfCache) csrfCache = null // token caducado: reintentar una vez
-    throw new ApiError(
-      response.status,
-      payload?.code ?? `HTTP_${response.status}`,
-      payload?.detail ?? payload?.title ?? `Error ${response.status}`,
-    )
+    const problem = payload && typeof payload === "object" ? payload as Record<string, unknown> : {}
+    throw new ApiError(response.status, typeof problem.code === "string" ? problem.code : `HTTP_${response.status}`,
+      typeof problem.detail === "string" ? problem.detail : response.status === 401
+        ? "Su sesión ha caducado. Inicie sesión nuevamente." : `No se pudo completar la solicitud (${response.status}).`)
   }
   return payload as T
 }
-
-/** Petición a rutas de autenticación fuera de {@code /api/v1} (p. ej. logout). */
-export async function authApi<T>(path: string, options: RequestOptions = {}): Promise<T> {
-  const { method = "GET", body } = options
-  const headers: Record<string, string> = { Accept: "application/json" }
-  if (body !== undefined) headers["Content-Type"] = "application/json"
-  if (method !== "GET") {
-    const csrf = csrfCache ?? (await fetchCsrf())
-    headers[csrf.headerName] = csrf.token
-  }
-  const response = await fetch(path, {
-    method,
-    credentials: "same-origin",
-    headers,
-    body: body === undefined ? undefined : JSON.stringify(body),
-  })
-  const text = await response.text()
-  const payload = text ? (JSON.parse(text) as ProblemDetails & T) : null
-  if (!response.ok) {
-    throw new ApiError(response.status, payload?.code ?? `HTTP_${response.status}`, payload?.detail ?? `Error ${response.status}`)
-  }
-  return payload as T
-}
-
-/** Igual que {@link api} pero conserva el cursor de paginación. */
-export async function apiPage<T>(path: string, params: RequestOptions["params"]): Promise<T> {
-  return api<T>(path, { params })
-}
-
+export function api<T>(path: string, options: RequestOptions = {}) { return request<T>(`/api/v1${path}`, options) }
+export function authApi<T>(path: string, options: RequestOptions = {}) { return request<T>(path, options) }
+export function apiPage<T>(path: string, params: RequestOptions["params"]) { return api<T>(path, { params }) }

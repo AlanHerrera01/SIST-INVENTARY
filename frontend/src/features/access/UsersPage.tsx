@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { FormField } from "@/components/FormField"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { EmptyState, ErrorState, LoadingState, PageHeader } from "@/components/PageState"
@@ -62,23 +63,19 @@ function CreateUserDialog() {
         <form className="space-y-4" onSubmit={handleSubmit((v) => mutation.mutate({ ...v, email: v.email || undefined }))}>
           <div className="space-y-1.5">
             <Label htmlFor="username">Nombre de usuario</Label>
-            <Input id="username" autoComplete="off" {...register("username")} aria-invalid={!!errors.username} />
-            {errors.username && <p className="text-xs text-red-600">{errors.username.message}</p>}
+            <Input id="username" autoComplete="username" {...register("username")} aria-invalid={!!errors.username} aria-describedby={errors.username ? "username-error" : undefined} />
+            {errors.username && <p id="username-error" role="alert" className="text-xs text-red-600">{errors.username.message}</p>}
           </div>
-          <div className="space-y-1.5">
-            <Label htmlFor="displayName">Nombre completo</Label>
-            <Input id="displayName" {...register("displayName")} aria-invalid={!!errors.displayName} />
-            {errors.displayName && <p className="text-xs text-red-600">{errors.displayName.message}</p>}
-          </div>
+          <FormField id="displayName" label="Nombre completo" {...register("displayName")} error={errors.displayName?.message} />
           <div className="space-y-1.5">
             <Label htmlFor="email">Correo (opcional)</Label>
-            <Input id="email" type="email" {...register("email")} aria-invalid={!!errors.email} />
-            {errors.email && <p className="text-xs text-red-600">{errors.email.message}</p>}
+            <Input id="email" type="email" {...register("email")} aria-invalid={!!errors.email} aria-describedby={errors.email ? "email-error" : undefined} />
+            {errors.email && <p id="email-error" role="alert" className="text-xs text-red-600">{errors.email.message}</p>}
           </div>
           <div className="space-y-1.5">
             <Label htmlFor="temporaryPassword">Contraseña temporal</Label>
-            <Input id="temporaryPassword" type="password" autoComplete="new-password" {...register("temporaryPassword")} aria-invalid={!!errors.temporaryPassword} />
-            {errors.temporaryPassword && <p className="text-xs text-red-600">{errors.temporaryPassword.message}</p>}
+            <Input id="temporaryPassword" type="password" autoComplete="new-password" {...register("temporaryPassword")} aria-invalid={!!errors.temporaryPassword} aria-describedby={errors.temporaryPassword ? "password-error" : undefined} />
+            {errors.temporaryPassword && <p id="password-error" role="alert" className="text-xs text-red-600">{errors.temporaryPassword.message}</p>}
           </div>
           {mutation.isError && (
             <p role="alert" className="text-sm text-red-600">

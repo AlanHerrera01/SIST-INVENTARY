@@ -8,8 +8,8 @@ export function PageHeader({ title, description, children }: { title: string; de
   return (
     <div className="mb-6 flex flex-wrap items-start justify-between gap-3">
       <div>
-        <h1 className="text-2xl font-semibold tracking-tight">{title}</h1>
-        {description && <p className="mt-1 text-sm text-muted-foreground">{description}</p>}
+        <h1 className="text-2xl font-bold tracking-tight text-primary">{title}</h1>
+        {description && <p className="mt-1 text-sm text-on-surface-variant">{description}</p>}
       </div>
       {children && <div className="flex items-center gap-2">{children}</div>}
     </div>
@@ -33,9 +33,9 @@ export function LoadingState({ label = "Cargando…" }: { label?: string }) {
 export function EmptyState({ title, description }: { title: string; description?: string }) {
   return (
     <div className="flex flex-col items-center gap-2 py-12 text-center" role="status">
-      <Inbox className="size-8 text-muted-foreground" aria-hidden="true" />
-      <p className="font-medium">{title}</p>
-      {description && <p className="text-sm text-muted-foreground">{description}</p>}
+      <Inbox className="size-8 text-outline" aria-hidden="true" />
+      <p className="font-medium text-primary">{title}</p>
+      {description && <p className="text-sm text-on-surface-variant">{description}</p>}
     </div>
   )
 }
@@ -66,7 +66,7 @@ export function AccessDenied({ permission }: { permission?: string }) {
       <AlertTriangle className="size-10 text-amber-500" aria-hidden="true" />
       <h2 className="text-lg font-semibold">No tiene acceso a esta sección</h2>
       <p className="max-w-md text-sm text-muted-foreground">
-        Su perfil no incluye el permiso necesario{permission ? ` (${permission})` : ""}.
+        Su perfil no incluye el permiso necesario{permission ? " para esta sección" : ""} en el alcance seleccionado.
         Contacte al administrador si considera que se trata de un error.
       </p>
     </div>

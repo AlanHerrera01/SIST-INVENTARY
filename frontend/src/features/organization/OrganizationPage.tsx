@@ -474,7 +474,7 @@ export function OrganizationPage() {
   if (!canRead) return <AccessDenied permission="organization.read" />
   return (
     <div>
-      <PageHeader title="Organización" description="Ciudades, sedes, centros, ubicaciones, matrices receptoras y responsables." />
+      <PageHeader title="Configuración" description="Ciudades, sedes, centros, ubicaciones, matrices receptoras y responsables." />
       {structure.isLoading && <LoadingState label="Cargando estructura…" />}
       {structure.isError && <ErrorState error={structure.error} onRetry={() => void structure.refetch()} />}
       {structure.data && (
